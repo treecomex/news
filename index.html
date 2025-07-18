@@ -23,6 +23,27 @@
             height: 320px;
             max-height: 400px;
         }
+        
+        .league-spartan{
+	  font-family: "League Spartan", sans-serif;
+	  font-optical-sizing: auto;
+	  font-weight: 800;
+	  font-style: bold;
+	}
+	
+	#nomeLogo{
+	  font-size: 2em;
+	}
+	
+	.brancoTreecomex{
+	  color: #fffff;
+	}
+	
+	.azulTreecomex{
+	  color: #6EC1E4;
+	}
+	
+	
         @media (min-width: 768px) {
             .chart-container {
                 height: 350px;
@@ -30,7 +51,7 @@
         }
         .text-main { color: #242424; }
         .text-accent { color: #004AAD; }
-        .bg-accent { background-color: #004AAD; }
+        .bg-accent { background-color: #03045e; }
         .border-accent { border-color: #004AAD; }
         .stat-card h3 {
             font-size: 1.125rem;
@@ -66,6 +87,22 @@
     </style>
 </head>
 <body class="text-main">
+    <!-- I will create a single-page infographic -->
+    <!-- Navigation Menu -->
+    <nav class="bg-accent p-4 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <a href="#" class="league-spartan text-white text-2xl font-bold mb-4 md:mb-0" id='nomeLogo'><span class='brancoTreecomex'>tree</span><span class='azulTreecomex'>comex</span></a>
+            <div class="flex space-x-6">
+                <a href="#overview" class="text-white hover:text-gray-200 text-lg">Visão Geral</a>
+                <a href="#exports" class="text-white hover:text-gray-200 text-lg">Exportações</a>
+                <a href="#imports" class="text-white hover:text-gray-200 text-lg">Importações</a>
+                <a href="#finance" class="text-white hover:text-gray-200 text-lg">Finanças</a>
+                <a href="#tech-ai" class="text-white hover:text-gray-200 text-lg">Tecnologia & IA</a>
+                <a href="#initiatives" class="text-white hover:text-gray-200 text-lg">Iniciativas</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container mx-auto p-4 md:p-8">
         <header class="text-center mb-12">
             <h1 class="text-4xl md:text-5xl font-black text-accent mb-2">Panorama Otimista do Comércio Exterior Brasileiro</h1>
@@ -73,7 +110,7 @@
         </header>
 
         <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="lg:col-span-3 bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row justify-around items-center text-center">
+            <div id="overview" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row justify-around items-center text-center">
                 <div class="stat-card mb-6 md:mb-0">
                     <h3>Corrente de Comércio 1º Semestre</h3>
                     <p class="stat-number">>$300 bi</p>
@@ -91,7 +128,7 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <div id="exports" class="bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-2xl font-bold text-center mb-4">Destinos das Exportações</h2>
                 <p class="text-center text-gray-600 mb-4 text-sm">A diversificação de parceiros comerciais é chave para a resiliência. A China continua sendo o principal destino, mas a relação com outros blocos se fortalece.</p>
                 <div class="chart-container">
@@ -99,7 +136,7 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <div id="imports" class="bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-2xl font-bold text-center mb-4">Origens das Importações</h2>
                  <p class="text-center text-gray-600 mb-4 text-sm">As importações refletem a demanda da indústria e do consumidor, com destaque para bens de capital e tecnologia vindos da Ásia, América do Norte e Europa.</p>
                 <div class="chart-container">
@@ -139,8 +176,100 @@
                     <canvas id="balanceProjectionChart"></canvas>
                 </div>
             </div>
+
+            <!-- New Section: Finanças e Cenário Econômico -->
+            <div id="finance" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4">Finanças e Cenário Econômico</h2>
+                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">O cenário financeiro brasileiro é influenciado por projeções de superávit e investimentos, mas também por tensões comerciais globais. Dados abaixo são exemplos e não refletem cotações em tempo real.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Superávit Comercial: Projeções Divergentes</h3>
+                        <p class="text-gray-700 text-sm">O MDIC projeta um superávit de US$ 50,4 bilhões para 2025, impactado por políticas externas. Já a AEB mantém uma visão mais otimista, prevendo US$ 93 bilhões, impulsionado pela recuperação das commodities.</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Investimento Estrangeiro Direto (IED)</h3>
+                        <p class="text-gray-700 text-sm">O IED no Brasil registrou queda de 8% em 2025, seguindo uma tendência global (-11%). No entanto, o setor de turismo se destaca com um aumento impressionante de 88% no IED no primeiro trimestre de 2025.</p>
+                    </div>
+                    <div class="md:col-span-2 bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Impacto das Disputas Comerciais</h3>
+                        <p class="text-gray-700 text-sm">A ameaça de tarifa de 50% dos EUA pode causar retração de 0,5% do PIB e perda de US$ 9,4 bilhões na balança comercial brasileira, afetando setores como carne, café e siderurgia.</p>
+                    </div>
+
+                    <!-- New: Cotações de Moedas -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm md:col-span-1">
+                        <h3 class="font-bold text-accent mb-2">Cotações de Moedas (Exemplo)</h3>
+                        <ul class="list-none space-y-2 text-gray-700 text-sm">
+                            <li>**Dólar Americano (USD):** R$ 5,20</li>
+                            <li>**Euro (EUR):** R$ 5,65</li>
+                            <li>**Yuan Chinês (CNY):** R$ 0,72</li>
+                        </ul>
+                    </div>
+
+                    <!-- New: Criptomoedas -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm md:col-span-1">
+                        <h3 class="font-bold text-accent mb-2">Criptomoedas (Exemplo)</h3>
+                        <ul class="list-none space-y-2 text-gray-700 text-sm">
+                            <li>**Bitcoin (BTC):** US$ 68.500</li>
+                            <li>**Ethereum (ETH):** US$ 3.800</li>
+                            <li>**Solana (SOL):** US$ 150</li>
+                        </ul>
+                    </div>
+
+                    <!-- New: Ações na Bolsa Brasileira -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm md:col-span-1">
+                        <h3 class="font-bold text-accent mb-2">Ações na Bolsa Brasileira (Exemplo)</h3>
+                        <ul class="list-none space-y-2 text-gray-700 text-sm">
+                            <li>**Petrobras (PETR4):** R$ 35,00</li>
+                            <li>**Vale (VALE3):** R$ 68,50</li>
+                            <li>**Itaú Unibanco (ITUB4):** R$ 30,20</li>
+                        </ul>
+                    </div>
+
+                    <!-- New: Ações na Bolsa Americana -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm md:col-span-1">
+                        <h3 class="font-bold text-accent mb-2">Ações na Bolsa Americana (Exemplo)</h3>
+                        <ul class="list-none space-y-2 text-gray-700 text-sm">
+                            <li>**Apple (AAPL):** US$ 210,00</li>
+                            <li>**Microsoft (MSFT):** US$ 450,00</li>
+                            <li>**Google (GOOGL):** US$ 180,00</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Section: Inovações Tecnológicas e Inteligência Artificial -->
+            <div id="tech-ai" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4">Inovações Tecnológicas e Inteligência Artificial</h2>
+                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">O ano de 2025 marca a transição da IA para a implementação generalizada, com avanços em computação quântica, BCIs e robótica, mas também desafios éticos e geopolíticos.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">IA Agente e Micro LLMs</h3>
+                        <p class="text-gray-700 text-sm">IA Agente realiza tarefas empresariais autônomas, otimizando fluxos de trabalho. Modelos menores e especializados (Micro LLMs) ganham força pela eficiência e controle, democratizando o acesso à IA.</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Computação Quântica</h3>
+                        <p class="text-gray-700 text-sm">Foco na estabilização de qubits e correção de erros, com aumento de US$ 2 bilhões em investimentos em startups em 2024. Empresas como D-Wave lançam computadores quânticos comerciais.</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Interfaces Cérebro-Computador (BCI)</h3>
+                        <p class="text-gray-700 text-sm">Avanços na tradução de sinais cerebrais em fala (97% de precisão) e controle de dispositivos com o pensamento. Mercado de BCI deve crescer para US$ 15,14 bilhões até 2035, com foco em saúde e simbiose humano-IA.</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Robótica Avançada</h3>
+                        <p class="text-gray-700 text-sm">Robôs colaborativos (cobots), móveis autônomos (AMRs) e robótica suave transformam manufatura e logística. Robôs cirúrgicos e exoesqueletos melhoram saúde e segurança no trabalho.</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Biotecnologia e Biologia Sintética</h3>
+                        <p class="text-gray-700 text-sm">IA acelera descoberta de medicamentos (30% dos novos até 2025) e otimiza ensaios clínicos. Edição genética (CRISPR-Cas9) e terapias celulares prometem curas para doenças genéticas.</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Desafios Éticos e Geopolíticos da IA</h3>
+                        <p class="text-gray-700 text-sm">Preocupação com deepfakes e erosão da confiança. Incidente do Grok destaca necessidade de IA Responsável. Investigação dos EUA sobre Pix e propriedade intelectual no Brasil mostra o comércio digital como campo de batalha.</p>
+                    </div>
+                </div>
+            </div>
             
-            <div class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+            <div id="initiatives" class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-2xl font-bold text-center mb-4">Iniciativas para o Futuro do Comércio</h2>
                 <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">O Brasil avança com modernização, novos acordos e inclusão social para garantir um crescimento sustentável e competitivo no longo prazo.</p>
                 <div class="flex flex-col md:flex-row items-center justify-center">
