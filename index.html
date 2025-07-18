@@ -42,8 +42,7 @@
 	.azulTreecomex{
 	  color: #6EC1E4;
 	}
-	
-	
+        
         @media (min-width: 768px) {
             .chart-container {
                 height: 350px;
@@ -87,18 +86,20 @@
     </style>
 </head>
 <body class="text-main">
-    <!-- I will create a single-page infographic -->
     <!-- Navigation Menu -->
     <nav class="bg-accent p-4 shadow-lg">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
             <a href="#" class="league-spartan text-white text-2xl font-bold mb-4 md:mb-0" id='nomeLogo'><span class='brancoTreecomex'>tree</span><span class='azulTreecomex'>comex</span></a>
             <div class="flex space-x-6">
                 <a href="#overview" class="text-white hover:text-gray-200 text-lg">Visão Geral</a>
+                <a href="#trade-news" class="text-white hover:text-gray-200 text-lg">Notícias Comex</a>
                 <a href="#exports" class="text-white hover:text-gray-200 text-lg">Exportações</a>
                 <a href="#imports" class="text-white hover:text-gray-200 text-lg">Importações</a>
-                <a href="#finance" class="text-white hover:text-gray-200 text-lg">Finanças</a>
-                <a href="#tech-ai" class="text-white hover:text-gray-200 text-lg">Tecnologia & IA</a>
                 <a href="#initiatives" class="text-white hover:text-gray-200 text-lg">Iniciativas</a>
+                <a href="#tech-ai" class="text-white hover:text-gray-200 text-lg">Tecnologia & IA</a>
+                <a href="#finance" class="text-white hover:text-gray-200 text-lg">Finanças</a>
+                <a href="#ascension" class="text-white hover:text-gray-200 text-lg">Em Ascensão</a>
+                <a href="#decline" class="text-white hover:text-gray-200 text-lg">Em Queda</a>
             </div>
         </div>
     </nav>
@@ -125,6 +126,26 @@
                     <h3>Crescimento do Volume de Importação</h3>
                     <p class="stat-number">+6,7%</p>
                     <p class="stat-desc">Maior nível da série histórica, sinalizando aquecimento econômico.</p>
+                </div>
+            </div>
+
+            <!-- Principais Notícias de Comércio Exterior -->
+            <div id="trade-news" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4">Principais Notícias de Comércio Exterior</h2>
+                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">Um resumo das notícias mais impactantes sobre importação e comércio exterior no Brasil na última semana.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Balança Comercial em Ascensão</h3>
+                        <p class="text-gray-700 text-sm">O Brasil registrou um superávit comercial de US$ 1,097 bilhão na segunda semana de julho, com exportações de US$ 6,472 bilhões e importações de US$ 5,375 bilhões. O superávit acumulado no ano de 2025 já atingiu US$ 32,370 bilhões. Exportações cresceram 1,9% e importações 10,0% em relação ao mesmo período do ano anterior, impulsionadas pela Indústria de Transformação (+12,4% nas importações).</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Novas Fronteiras para Exportações</h3>
+                        <p class="text-gray-700 text-sm">O Brasil concretizou 13 novas aberturas de mercado em 2025, totalizando 313 desde o início do governo. Na última semana, foram 10 novas negociações com seis parceiros (Bahamas, Camarões, Coreia do Sul, Costa Rica, Japão e Peru) para produtos como carne, material genético e óleo de peixe. Essa diversificação e expansão visam reduzir a dependência e aumentar a resiliência.</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Dinâmica das Importações e Fortalecimento Interno</h3>
+                        <p class="text-gray-700 text-sm">A China consolidou-se como principal fornecedor do Brasil (26% das importações no 1º semestre de 2025), com aumento de 12% na quantidade de bens de consumo duráveis chineses. Apesar da preocupação local, isso reflete a robustez do mercado consumidor. O setor leiteiro de Santa Catarina é um caso positivo, com exportações +1.200% e importações -86% em junho, além da queda nos custos de insumos.</p>
+                    </div>
                 </div>
             </div>
 
@@ -177,67 +198,29 @@
                 </div>
             </div>
 
-            <!-- New Section: Finanças e Cenário Econômico -->
-            <div id="finance" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-center mb-4">Finanças e Cenário Econômico</h2>
-                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">O cenário financeiro brasileiro é influenciado por projeções de superávit e investimentos, mas também por tensões comerciais globais. Dados abaixo são exemplos e não refletem cotações em tempo real.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Superávit Comercial: Projeções Divergentes</h3>
-                        <p class="text-gray-700 text-sm">O MDIC projeta um superávit de US$ 50,4 bilhões para 2025, impactado por políticas externas. Já a AEB mantém uma visão mais otimista, prevendo US$ 93 bilhões, impulsionado pela recuperação das commodities.</p>
+            <!-- Section: Iniciativas para o Futuro do Comércio -->
+            <div id="initiatives" class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4">Iniciativas para o Futuro do Comércio</h2>
+                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">O Brasil avança com modernização, novos acordos e inclusão social para garantir um crescimento sustentável e competitivo no longo prazo.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center">
+                    <div class="flow-step">
+                        <h3 class="font-bold">Modernização</h3>
+                        <p class="text-xs">Portal Único Comex agiliza e simplifica processos.</p>
                     </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Investimento Estrangeiro Direto (IED)</h3>
-                        <p class="text-gray-700 text-sm">O IED no Brasil registrou queda de 8% em 2025, seguindo uma tendência global (-11%). No entanto, o setor de turismo se destaca com um aumento impressionante de 88% no IED no primeiro trimestre de 2025.</p>
+                    <div class="flow-arrow hidden md:block">→</div>
+                    <div class="flow-step my-4 md:my-0">
+                        <h3 class="font-bold">Novos Acordos</h3>
+                        <p class="text-xs">Parcerias estratégicas (EFTA, EAU) abrem novos mercados.</p>
                     </div>
-                    <div class="md:col-span-2 bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Impacto das Disputas Comerciais</h3>
-                        <p class="text-gray-700 text-sm">A ameaça de tarifa de 50% dos EUA pode causar retração de 0,5% do PIB e perda de US$ 9,4 bilhões na balança comercial brasileira, afetando setores como carne, café e siderurgia.</p>
-                    </div>
-
-                    <!-- New: Cotações de Moedas -->
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm md:col-span-1">
-                        <h3 class="font-bold text-accent mb-2">Cotações de Moedas (Exemplo)</h3>
-                        <ul class="list-none space-y-2 text-gray-700 text-sm">
-                            <li>**Dólar Americano (USD):** R$ 5,20</li>
-                            <li>**Euro (EUR):** R$ 5,65</li>
-                            <li>**Yuan Chinês (CNY):** R$ 0,72</li>
-                        </ul>
-                    </div>
-
-                    <!-- New: Criptomoedas -->
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm md:col-span-1">
-                        <h3 class="font-bold text-accent mb-2">Criptomoedas (Exemplo)</h3>
-                        <ul class="list-none space-y-2 text-gray-700 text-sm">
-                            <li>**Bitcoin (BTC):** US$ 68.500</li>
-                            <li>**Ethereum (ETH):** US$ 3.800</li>
-                            <li>**Solana (SOL):** US$ 150</li>
-                        </ul>
-                    </div>
-
-                    <!-- New: Ações na Bolsa Brasileira -->
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm md:col-span-1">
-                        <h3 class="font-bold text-accent mb-2">Ações na Bolsa Brasileira (Exemplo)</h3>
-                        <ul class="list-none space-y-2 text-gray-700 text-sm">
-                            <li>**Petrobras (PETR4):** R$ 35,00</li>
-                            <li>**Vale (VALE3):** R$ 68,50</li>
-                            <li>**Itaú Unibanco (ITUB4):** R$ 30,20</li>
-                        </ul>
-                    </div>
-
-                    <!-- New: Ações na Bolsa Americana -->
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm md:col-span-1">
-                        <h3 class="font-bold text-accent mb-2">Ações na Bolsa Americana (Exemplo)</h3>
-                        <ul class="list-none space-y-2 text-gray-700 text-sm">
-                            <li>**Apple (AAPL):** US$ 210,00</li>
-                            <li>**Microsoft (MSFT):** US$ 450,00</li>
-                            <li>**Google (GOOGL):** US$ 180,00</li>
-                        </ul>
+                    <div class="flow-arrow hidden md:block">→</div>
+                    <div class="flow-step">
+                         <h3 class="font-bold">Inclusão e Diversidade</h3>
+                        <p class="text-xs">Iniciativas como 'Raízes Comex' capacitam novos talentos.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- New Section: Inovações Tecnológicas e Inteligência Artificial -->
+            <!-- Section: Inovações Tecnológicas e Inteligência Artificial -->
             <div id="tech-ai" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-2xl font-bold text-center mb-4">Inovações Tecnológicas e Inteligência Artificial</h2>
                 <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">O ano de 2025 marca a transição da IA para a implementação generalizada, com avanços em computação quântica, BCIs e robótica, mas também desafios éticos e geopolíticos.</p>
@@ -268,24 +251,160 @@
                     </div>
                 </div>
             </div>
-            
-            <div id="initiatives" class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-center mb-4">Iniciativas para o Futuro do Comércio</h2>
-                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">O Brasil avança com modernização, novos acordos e inclusão social para garantir um crescimento sustentável e competitivo no longo prazo.</p>
-                <div class="flex flex-col md:flex-row items-center justify-center">
-                    <div class="flow-step">
-                        <h3 class="font-bold">Modernização</h3>
-                        <p class="text-xs">Portal Único Comex agiliza e simplifica processos.</p>
+
+            <!-- Section: Finanças e Cenário Econômico -->
+            <div id="finance" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4">Finanças e Cenário Econômico</h2>
+                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">O cenário financeiro brasileiro é influenciado por projeções de superávit e investimentos, mas também por tensões comerciais globais. Dados abaixo são exemplos e não refletem cotações em tempo real.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Superávit Comercial: Projeções Divergentes</h3>
+                        <p class="text-gray-700 text-sm">O MDIC projeta um superávit de US$ 50,4 bilhões para 2025, impulsionado por políticas externas. Já a AEB mantém uma visão mais otimista, prevendo US$ 93 bilhões, impulsionado pela recuperação das commodities.</p>
                     </div>
-                    <div class="flow-arrow hidden md:block">→</div>
-                    <div class="flow-step my-4 md:my-0">
-                        <h3 class="font-bold">Novos Acordos</h3>
-                        <p class="text-xs">Parcerias estratégicas (EFTA, EAU) abrem novos mercados.</p>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Investimento Estrangeiro Direto (IED)</h3>
+                        <p class="text-gray-700 text-sm">O IED no Brasil registrou queda de 8% em 2025, seguindo uma tendência global (-11%). No entanto, o setor de turismo se destaca com um aumento impressionante de 88% no IED no primeiro trimestre de 2025.</p>
                     </div>
-                    <div class="flow-arrow hidden md:block">→</div>
-                    <div class="flow-step">
-                         <h3 class="font-bold">Inclusão e Diversidade</h3>
-                        <p class="text-xs">Iniciativas como "Raízes Comex" capacitam novos talentos.</p>
+                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Indicadores Econômicos Chave</h3>
+                        <ul class="list-none space-y-2 text-gray-700 text-sm">
+                            <li>Inflação (Brasil): Projeção reduzida pela 7ª semana seguida, indicando otimismo.</li>
+                            <li>Taxa Selic (Brasil): Mediana para o fim de 2025 em 15,0%, com expectativa de interrupção do ciclo de alta.</li>
+                            <li>PIB (Brasil): Mediana para 2025 em 2,23%, com BC elevando estimativa para 2,1%.</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-2 lg:col-span-3 bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Impacto das Disputas Comerciais</h3>
+                        <p class="text-gray-700 text-sm">A ameaça de tarifa de 50% dos EUA pode causar retração de 0,5% do PIB e perda de US$ 9,4 bilhões na balança comercial brasileira, afetando setores como carne, café e siderurgia.</p>
+                    </div>
+
+                    <!-- Cotações de Moedas -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Cotações de Moedas (Valores de Referência)</h3>
+                        <ul class="list-none space-y-2 text-gray-700 text-sm">
+                            <li>Dólar Americano (USD): R$ 5,55</li>
+                            <li>Euro (EUR): R$ 6,46</li>
+                            <li>Yuan Chinês (CNY): R$ 0,77</li>
+                        </ul>
+                    </div>
+
+                    <!-- Criptomoedas -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Criptomoedas (Valores de Referência em BRL)</h3>
+                        <ul class="list-none space-y-2 text-gray-700 text-sm">
+                            <li>Bitcoin (BTC): R$ 653.868,95</li>
+                            <li>Ethereum (ETH): R$ 19.862,09</li>
+                            <li>Solana (SOL): R$ 993,95</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Principais Bolsas do Mundo -->
+                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Principais Bolsas do Mundo (Índices e Capitalização)</h3>
+                        <ul class="list-none space-y-2 text-gray-700 text-sm">
+                            <li>NYSE (EUA): ~US$ 25-31,7 trilhões (DJIA: ~44.484 pts, S&P 500: ~6.297 pts)</li>
+                            <li>Nasdaq (EUA): ~US$ 21,7-30,7 trilhões (NASDAQ Composite: ~20.885 pts)</li>
+                            <li>Euronext (Europa): ~US$ 6,2-7,2 trilhões (CAC 40: ~7.842 pts, DAX: ~24.361 pts, FTSE 100: ~8.993 pts)</li>
+                            <li>Shanghai Stock Exchange (China): ~US$ 6,5-7 trilhões (SSE Composite: ~3.534 pts)</li>
+                            <li>Japan Exchange Group (Japão): ~US$ 5,9-6,9 trilhões (Nikkei 225: ~39.819 pts)</li>
+                            <li>B3 (Brasil): ~US$ 0,9 trilhão (Ibovespa: ~135.565 pts)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Ações na Bolsa Brasileira -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Principais Empresas na Bolsa Brasileira (Valor de Mercado)</h3>
+                        <ul class="list-none space-y-2 text-gray-700 text-sm">
+                            <li>Petrobras (PETR4): ~R$ 426-439 bilhões</li>
+                            <li>Itaú Unibanco (ITUB4): ~R$ 361-377 bilhões</li>
+                            <li>Vale (VALE3): ~R$ 227-251 bilhões</li>
+                            <li>Ambev (ABEV3): ~R$ 208 bilhões</li>
+                            <li>BTG Pactual (BPAC11): ~R$ 204 bilhões</li>
+                        </ul>
+                    </div>
+
+                    <!-- Ações na Bolsa Americana -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Principais Empresas na Bolsa Americana (Valor de Mercado)</h3>
+                        <ul class="list-none space-y-2 text-gray-700 text-sm">
+                            <li>Microsoft (MSFT): ~US$ 3,8 trilhões</li>
+                            <li>Apple (AAPL): ~US$ 3,14 trilhões</li>
+                            <li>NVIDIA (NVDA): ~US$ 2,37 trilhões</li>
+                            <li>Amazon (AMZN): ~US$ 2,38 trilhões</li>
+                            <li>Alphabet (GOOG / GOOGL): ~US$ 2,23 trilhões</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: Empresas em Ascensão (Últimos 3 Meses) -->
+            <div id="ascension" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4">Empresas em Ascensão (Últimos 3 Meses)</h2>
+                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">Análise das empresas que se destacaram com valorização nas bolsas americana e brasileira no período recente.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Bolsa Americana</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+                            <li>NVIDIA (NVDA): +42,98% (no ano até 17/07/2025)</li>
+                            <li>Meta Platforms Inc. (META): +47,40% (no ano até 17/07/2025)</li>
+                            <li>Broadcom (AVGO): +78,54% (no ano até 17/07/2025)</li>
+                            <li>Oracle (ORCL): +80,48% (no ano até 17/07/2025)</li>
+                            <li>Netflix (NFLX): +98,17% (no ano até 17/07/2025)</li>
+                            <li>Palantir Technologies (PLTR): +437,67% (no ano até 17/07/2025)</li>
+                            <li>General Electric Aerospace (GE): +64,05% (no ano até 17/07/2025)</li>
+                            <li>Philip Morris International (PM): +66,78% (no ano até 17/07/2025)</li>
+                            <li>IBM (IBM): +52,27% (no ano até 17/07/2025)</li>
+                            <li>Cisco Systems (CSCO): +42,24% (no ano até 17/07/2025)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Bolsa Brasileira</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+                            <li>MRV (MRVE3): +20,42% (em junho/2025)</li>
+                            <li>Embraer (EMBR3): +17,59% (em junho/2025)</li>
+                            <li>TIM (TIMS3): +13,13% (em junho/2025)</li>
+                            <li>Engie Brasil (EGIE3): +10,59% (em junho/2025)</li>
+                            <li>Marcopolo (POMO4): +9,79% (em junho/2025)</li>
+                            <li>Grupo Pão de Açúcar (PCAR3): +23,61% (últimos 30 dias)</li>
+                            <li>Oncoclínicas (ONCO3): +22,32% (últimos 30 dias)</li>
+                            <li>WEG (WEGE3): +45,5% (em 2024)</li>
+                            <li>Marfrig (MRFG3): +104,76% (em 2024)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: Empresas em Queda (Últimos 6 Meses) -->
+            <div id="decline" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4">Empresas em Queda (Últimos 6 Meses)</h2>
+                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">Panorama das empresas que registraram desvalorização nas bolsas americana e brasileira no período recente.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Bolsa Americana</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+                            <li>Tesla (TSLA): -23% (no ano até jul/2025)</li>
+                            <li>Eli Lilly (LLY): -10,13% (no ano até jul/2025)</li>
+                            <li>Exxon Mobil (XOM): -5,99% (no ano até jul/2025)</li>
+                            <li>Chevron (CVX): -6,58% (no ano até jul/2025)</li>
+                            <li>P&G (PG): -7,54% (no ano até jul/2025)</li>
+                            <li>UnitedHealth (UNH): -48,92% (no ano até jul/2025)</li>
+                            <li>Merck (MRK): -34,39% (no ano até jul/2025)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="font-bold text-accent mb-2">Bolsa Brasileira</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+                            <li>Magazine Luiza (MGLU3): -69,72% (em 2024)</li>
+                            <li>Cogna (COGN3): -68,77% (em 2024)</li>
+                            <li>Yduqs (YDUQ3): -61,18% (em 2024)</li>
+                            <li>CVC Brasil (CVCB3): -60,57% (em 2024)</li>
+                            <li>Azul (AZUL4): -77,89% (em 2024)</li>
+                            <li>Usiminas (USIM5): -20,77% (em junho/2025)</li>
+                            <li>Braskem (BRKM5): -17,62% (em junho/2025)</li>
+                            <li>São Martinho (SMTO3): -16,97% (em junho/2025)</li>
+                            <li>Cosan (CSAN3): -16,65% (em junho/2025)</li>
+                            <li>Vamos (VAMO3): -15,90% (em junho/2025)</li>
+                        </ul>
                     </div>
                 </div>
             </div>
