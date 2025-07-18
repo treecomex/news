@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +32,7 @@
 	}
 	
 	#nomeLogo{
-	  font-size: 2em;
+	  font-size: 2.5em;
 	}
 	
 	.brancoTreecomex{
@@ -48,6 +48,13 @@
                 height: 350px;
             }
         }
+        
+        @media(max-width:800px){
+            #menu{
+                display: none;
+            }
+        }
+        
         .text-main { color: #242424; }
         .text-accent { color: #004AAD; }
         .bg-accent { background-color: #03045e; }
@@ -89,13 +96,13 @@
     <!-- Navigation Menu -->
     <nav class="bg-accent p-4 shadow-lg">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <a href="https://www.instagram.com/treecomex" class="league-spartan text-white text-2xl font-bold mb-4 md:mb-0" id='nomeLogo'><span class='brancoTreecomex'>tree</span><span class='azulTreecomex'>comex</span></a>
-            <div class="flex space-x-6">
+            <a href="https://www.instagram.com/treecomex" target="_blank" class="league-spartan text-white font-bold mb-0 md:mb-0" id='nomeLogo'><span class='brancoTreecomex'>tree</span><span class='azulTreecomex'>comex</span></a>
+            <div id='menu' class="flex space-x-6">
                 <a href="#overview" class="text-white hover:text-gray-200 text-lg">Visão Geral</a>
                 <a href="#trade-news" class="text-white hover:text-gray-200 text-lg">Notícias Comex</a>
-                <a href="#exports" class="text-white hover:text-gray-200 text-lg">Exportações</a>
-                <a href="#imports" class="text-white hover:text-gray-200 text-lg">Importações</a>
-                <a href="#initiatives" class="text-white hover:text-gray-200 text-lg">Iniciativas</a>
+                <!--  <a href="#exports" class="text-white hover:text-gray-200 text-lg">Exportações</a> -->
+                <!--  <a href="#imports" class="text-white hover:text-gray-200 text-lg">Importações</a> -->
+                <!--  <a href="#initiatives" class="text-white hover:text-gray-200 text-lg">Iniciativas</a> -->
                 <a href="#tech-ai" class="text-white hover:text-gray-200 text-lg">Tecnologia & IA</a>
                 <a href="#finance" class="text-white hover:text-gray-200 text-lg">Finanças</a>
                 <a href="#ascension" class="text-white hover:text-gray-200 text-lg">Em Ascensão</a>
