@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panorama Otimista do Comércio Exterior Brasileiro</title>
-    <link rel="icon" href="/favicon.ico">
+    <title>Panorama TreeComex | Julho 2025</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Cool Slate -->
+    <!-- Application Structure Plan: A single-page, vertically scrolling dashboard divided into three thematic sections: "Comércio Exterior", "Finanças", and "Tecnologia & IA". This structure is intuitive and directly addresses the user's requested topics. A sticky header contains navigation links that smoothly scroll the user to the corresponding section, providing easy access to all parts of the report. The user flow starts with a high-level positive overview, moves to a detailed financial dashboard, and ends with forward-looking tech news, creating a logical narrative. -->
+    <!-- Visualization & Content Choices: Report Info -> Goal -> Viz/Presentation Method -> Interaction -> Justification -> Library/Method. Comércio Exterior: Key stats -> Inform -> KPI Cards (HTML/CSS) -> Static -> High-impact overview. Finanças (Moedas, Cripto, Bolsas, Ações): Data comparison -> Compare -> Bar/Line Charts (Chart.js/Canvas) & Tables (HTML) -> Hover Tooltips -> Visual comparison of performance and precise data lookup. Tecnologia & IA: Qualitative news -> Organize/Inform -> Structured Text with Icons (HTML/CSS) -> Readability -> Clear, digestible presentation for non-numeric info. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F2F2F2;
+            background-color: #f1f5f9;
         }
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 320px;
+            height: 300px;
             max-height: 400px;
         }
         
+        header{
+        background-color: #004AAD;
+        }
+              
         .league-spartan{
 	  font-family: "League Spartan", sans-serif;
 	  font-optical-sizing: auto;
@@ -43,7 +47,7 @@
 	.azulTreecomex{
 	  color: #6EC1E4;
 	}
-        
+	
         @media (min-width: 768px) {
             .chart-container {
                 height: 350px;
@@ -56,507 +60,503 @@
             }
         }
         
-        .text-main { color: #242424; }
-        .text-accent { color: #004AAD; }
-        .bg-accent { background-color: #03045e; }
-        .border-accent { border-color: #004AAD; }
-        .stat-card h3 {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #242424;
-            margin-bottom: 0.5rem;
-        }
-        .stat-card .stat-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #004AAD;
-            line-height: 1;
-        }
-        .stat-card .stat-desc {
-            font-size: 0.875rem;
-            color: #6B7280;
-            margin-top: 0.5rem;
-        }
-        .flow-step {
-            border: 2px solid #009FFD;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            text-align: center;
+        
+        .kpi-card {
             background-color: white;
-            flex: 1;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
-        .flow-arrow {
-            font-size: 2rem;
-            color: #004AAD;
-            align-self: center;
-            margin: 0 1rem;
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .content-card {
+             background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
         }
     </style>
 </head>
-<body class="text-main">
-    <!-- Navigation Menu -->
-    <nav class="bg-accent p-4 shadow-lg">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <a href="https://www.instagram.com/treecomex" target="_blank" class="league-spartan text-white font-bold mb-0" id='nomeLogo'><span class='brancoTreecomex'>tree</span><span class='azulTreecomex'>comex</span></a>
-            <div id='menu' class="flex space-x-6">
-                <a href="#overview" class="text-white hover:text-gray-200 text-lg">Visão Geral</a>
-                <a href="#trade-news" class="text-white hover:text-gray-200 text-lg">Notícias Comex</a>
-                <!--  <a href="#exports" class="text-white hover:text-gray-200 text-lg">Exportações</a> -->
-                <!--  <a href="#imports" class="text-white hover:text-gray-200 text-lg">Importações</a> -->
-                <!--  <a href="#initiatives" class="text-white hover:text-gray-200 text-lg">Iniciativas</a> -->
-                <a href="#tech-ai" class="text-white hover:text-gray-200 text-lg">Tecnologia & IA</a>
-                <a href="#finance" class="text-white hover:text-gray-200 text-lg">Finanças</a>
-                <a href="#ascension" class="text-white hover:text-gray-200 text-lg">Em Ascensão</a>
-                <a href="#decline" class="text-white hover:text-gray-200 text-lg">Em Queda</a>
-            </div>
-        </div>
-    </nav>
+<body class="text-slate-800">
 
-    <div class="container mx-auto p-4 md:p-8">
-        <header class="text-center mb-6">
-            <h1 class="text-4xl md:text-5xl font-black text-accent mb-2">Panorama Otimista do Comércio Exterior Brasileiro</h1>
-            <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">Uma análise dos recentes indicadores positivos que demonstram a força e o dinamismo da economia brasileira no cenário global.</p>
-            <small>(Semana de 13 à 19 de Julho de 2025)</small>
-        </header>
-
-        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div id="overview" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row justify-around items-center text-center">
-                <div class="stat-card mb-6 md:mb-0">
-                    <h3>Corrente de Comércio 1º Semestre</h3>
-                    <p class="stat-number">>$300 bi</p>
-                    <p class="stat-desc">Recorde histórico, somando exportações e importações.</p>
-                </div>
-                <div class="stat-card mb-6 md:mb-0">
-                    <h3>Superávit 1º Semestre</h3>
-                    <p class="stat-number">+$30,1 bi</p>
-                    <p class="stat-desc">Saldo positivo robusto na balança comercial.</p>
-                </div>
-                 <div class="stat-card">
-                    <h3>Crescimento do Volume de Importação</h3>
-                    <p class="stat-number">+6,7%</p>
-                    <p class="stat-desc">Maior nível da série histórica, sinalizando aquecimento econômico.</p>
-                </div>
-            </div>
-
-            <!-- Principais Notícias de Comércio Exterior -->
-            <div id="trade-news" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-center mb-4">Principais Notícias de Comércio Exterior</h2>
-                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">Um resumo das notícias mais impactantes sobre importação e comércio exterior no Brasil na última semana.</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Balança Comercial em Ascensão</h3>
-                        <p class="text-gray-700 text-sm">O Brasil registrou um superávit comercial de US$ 1,097 bilhão na segunda semana de julho, com exportações de US$ 6,472 bilhões e importações de US$ 5,375 bilhões. O superávit acumulado no ano de 2025 já atingiu US$ 32,370 bilhões. Exportações cresceram 1,9% e importações 10,0% em relação ao mesmo período do ano anterior, impulsionadas pela Indústria de Transformação (+12,4% nas importações).</p>
+    <header class="backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="https://www.instagram.com/treecomex" target="_blank" class="league-spartan text-white font-bold mb-0" id='nomeLogo'><span class='brancoTreecomex'>tree</span><span class='azulTreecomex'>comex</span></a>
+                       <!-- <span class="text-2xl font-bold text-blue-600">Panorama</span> -->
                     </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Novas Fronteiras para Exportações</h3>
-                        <p class="text-gray-700 text-sm">O Brasil concretizou 13 novas aberturas de mercado em 2025, totalizando 313 desde o início do governo. Na última semana, foram 10 novas negociações com seis parceiros (Bahamas, Camarões, Coreia do Sul, Costa Rica, Japão e Peru) para produtos como carne, material genético e óleo de peixe. Essa diversificação e expansão visam reduzir a dependência e aumentar a resiliência.</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Dinâmica das Importações e Fortalecimento Interno</h3>
-                        <p class="text-gray-700 text-sm">A China consolidou-se como principal fornecedor do Brasil (26% das importações no 1º semestre de 2025), com aumento de 12% na quantidade de bens de consumo duráveis chineses. Apesar da preocupação local, isso reflete a robustez do mercado consumidor. O setor leiteiro de Santa Catarina é um caso positivo, com exportações +1.200% e importações -86% em junho, além da queda nos custos de insumos.</p>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#comercio" class="text-white px-3 py-2 rounded-md text-sm font-medium">Comércio Exterior</a>
+                        <a href="#financas" class="text-white px-3 py-2 rounded-md text-sm font-medium">Finanças</a>
+                        <a href="#tecnologia" class="text-white px-3 py-2 rounded-md text-sm font-medium">Tecnologia & IA</a>
                     </div>
                 </div>
             </div>
+        </nav>
+    </header>
 
-            <div id="exports" class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-center mb-4">Destinos das Exportações</h2>
-                <p class="text-center text-gray-600 mb-4 text-sm">A diversificação de parceiros comerciais é chave para a resiliência. A China continua sendo o principal destino, mas a relação com outros blocos se fortalece.</p>
-                <div class="chart-container">
-                    <canvas id="exportPartnersChart"></canvas>
-                </div>
-            </div>
-
-            <div id="imports" class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-center mb-4">Origens das Importações</h2>
-                 <p class="text-center text-gray-600 mb-4 text-sm">As importações refletem a demanda da indústria e do consumidor, com destaque para bens de capital e tecnologia vindos da Ásia, América do Norte e Europa.</p>
-                <div class="chart-container">
-                    <canvas id="importPartnersChart"></canvas>
-                </div>
-            </div>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <section id="comercio" class="mb-16">
+            <h1 class="text-4xl font-bold text-slate-900 mb-2">Comércio Exterior do Brasil</h1>
+            <p class="text-lg text-slate-600 mb-8">Um panorama otimista do crescimento robusto e recordes históricos que sinalizam um cenário promissor para a economia nacional na semana de 20 a 25 de Julho de 2025.</p>
             
-            <div class="md:col-span-2 lg:col-span-1 lg:row-span-2 bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-center mb-4">Principais Produtos</h2>
-                 <p class="text-center text-gray-600 mb-4 text-sm">O agronegócio e a indústria extrativa lideram as exportações, enquanto as importações são cruciais para a cadeia produtiva e inovação.</p>
-                <div class="mt-6">
-                    <h3 class="font-bold text-accent mb-2">🚀 Exportados</h3>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Soja e derivados</li>
-                        <li>Petróleo bruto</li>
-                        <li>Minério de ferro</li>
-                        <li>Carnes (bovina e de frango)</li>
-                        <li>Celulose e Açúcar</li>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="kpi-card text-center">
+                    <h3 class="text-slate-500 font-medium">Corrente de Comércio</h3>
+                    <p class="text-4xl font-bold text-blue-600 mt-2">US$ 323,97 Bi</p>
+                    <p class="text-sm text-slate-400 mt-1">Acumulado até 2ª semana de Jul/25</p>
+                </div>
+                <div class="kpi-card text-center">
+                    <h3 class="text-slate-500 font-medium">Exportações</h3>
+                    <p class="text-4xl font-bold text-blue-600 mt-2">US$ 178,17 Bi</p>
+                    <p class="text-sm text-slate-400 mt-1">Recorde para o período</p>
+                </div>
+                <div class="kpi-card text-center">
+                    <h3 class="text-slate-500 font-medium">Importações</h3>
+                    <p class="text-4xl font-bold text-blue-600 mt-2">US$ 145,80 Bi</p>
+                    <p class="text-sm text-slate-400 mt-1">Sinal de aquecimento interno</p>
+                </div>
+                <div class="kpi-card text-center">
+                    <h3 class="text-slate-500 font-medium">Superávit da Balança</h3>
+                    <p class="text-4xl font-bold text-blue-600 mt-2">US$ 32,37 Bi</p>
+                    <p class="text-sm text-slate-400 mt-1">Resultado positivo expressivo</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4">Destaques do Varejo e Logística</h2>
+                <ul class="space-y-3 text-slate-600">
+                    <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">➔</span><span><strong class="font-semibold text-slate-700">Descentralização do E-commerce:</strong> PMEs impulsionam a expansão do alcance nacional, distribuindo o crescimento digital pelo país.</span></li>
+                    <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">➔</span><span><strong class="font-semibold text-slate-700">Domínio Logístico:</strong> Mercado Livre e Shopee concentram 54% da ocupação de galpões, mostrando a força do e-commerce.</span></li>
+                    <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">➔</span><span><strong class="font-semibold text-slate-700">Movimentações no Setor de Delivery:</strong> iFood negocia aquisição da Alelo, enquanto a gigante chinesa Keeta acelera planos para operar no Brasil.</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="financas" class="mb-16">
+            <h1 class="text-4xl font-bold text-slate-900 mb-2">Painel Financeiro</h1>
+            <p class="text-lg text-slate-600 mb-8">Indicadores chave, cotações e movimentos de mercado no Brasil e no mundo, atualizados em 25 de Julho de 2025.</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="content-card">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Cotação de Moedas (vs BRL)</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-slate-50 text-slate-500">
+                                <tr>
+                                    <th class="p-2 rounded-l-lg">Moeda</th>
+                                    <th class="p-2">Valor (R$)</th>
+                                    <th class="p-2 rounded-r-lg">Variação Dia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-2 font-medium">Dólar (USD)</td>
+                                    <td class="p-2">5,566</td>
+                                    <td class="p-2 text-green-600 font-semibold">+0,640%</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-2 font-medium">Euro (EUR)</td>
+                                    <td class="p-2">6,540</td>
+                                    <td class="p-2 text-green-600 font-semibold">+0,580%</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-2 font-medium">Yuan (CNY)</td>
+                                    <td class="p-2">0,770</td>
+                                    <td class="p-2 text-slate-500">Estável</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-2 font-medium">Iene (JPY)</td>
+                                    <td class="p-2">0,037</td>
+                                    <td class="p-2 text-slate-500">-</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-2 font-medium">Libra (GBP)</td>
+                                    <td class="p-2">7,470</td>
+                                    <td class="p-2 text-green-600 font-semibold">+0,110%</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-2 font-medium">Dólar Can. (CAD)</td>
+                                    <td class="p-2">4,040</td>
+                                    <td class="p-2 text-slate-500">Estável</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-medium">Dólar Aus. (AUD)</td>
+                                    <td class="p-2">3,650</td>
+                                    <td class="p-2 text-green-600 font-semibold">+0,290%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Cotação de Criptomoedas (vs BRL)</h2>
+                     <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-slate-50 text-slate-500">
+                                <tr>
+                                    <th class="p-2 rounded-l-lg">Cripto</th>
+                                    <th class="p-2">Valor (R$)</th>
+                                    <th class="p-2 rounded-r-lg">Variação Dia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-2 font-medium">Bitcoin (BTC)</td>
+                                    <td class="p-2">647.218,09</td>
+                                    <td class="p-2 text-slate-500">-</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-2 font-medium">Ethereum (ETH)</td>
+                                    <td class="p-2">20.690,00</td>
+                                    <td class="p-2 text-green-600 font-semibold">+0,84%</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-2 font-medium">Ripple (XRP)</td>
+                                    <td class="p-2">3,08</td>
+                                    <td class="p-2 text-slate-500">-</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-2 font-medium">Solana (SOL)</td>
+                                    <td class="p-2">993,95</td>
+                                    <td class="p-2 text-red-500 font-semibold">-3,00%</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-2 font-medium">Cardano (ADA)</td>
+                                    <td class="p-2">0,79</td>
+                                    <td class="p-2 text-slate-500">-</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-2 font-medium">Binance Coin (BNB)</td>
+                                    <td class="p-2">764,60</td>
+                                    <td class="p-2 text-slate-500">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-medium">Dogecoin (DOGE)</td>
+                                    <td class="p-2">1,28</td>
+                                    <td class="p-2 text-slate-500">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="content-card col-span-1 lg:col-span-2">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Indicadores Econômicos do Brasil</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex items-center bg-slate-50 p-4 rounded-lg">
+                            <div class="flex-grow">
+                                <h4 class="font-semibold">Taxa Selic (Meta 2025)</h4>
+                                <p class="text-3xl font-bold text-blue-600">15,00%</p>
+                                <p class="text-sm text-slate-500">Manutenção reflete cautela para controle da inflação.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center bg-slate-50 p-4 rounded-lg">
+                             <div class="flex-grow">
+                                <h4 class="font-semibold">IPCA-15 (Prévia da Inflação)</h4>
+                                <p class="text-3xl font-bold text-blue-600">0,33%</p>
+                                <p class="text-sm text-slate-500">Aceleração em Julho. Acumulado de 5,30% em 12 meses.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card col-span-1 lg:col-span-2">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Desempenho das Bolsas Globais (Variação Diária)</h2>
+                    <div class="chart-container">
+                        <canvas id="bolsasChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Empresas em Ascensão (Últimos 3 meses)</h2>
+                    <div class="chart-container h-96">
+                        <canvas id="ascensaoChart"></canvas>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Empresas em Queda (Últimos 6 meses)</h2>
+                    <div class="chart-container h-96">
+                        <canvas id="quedaChart"></canvas>
+                    </div>
+                </div>
+                 <div class="content-card col-span-1 lg:col-span-2">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Maiores Empresas dos EUA por Valor de Mercado</h2>
+                     <div class="chart-container h-96">
+                        <canvas id="marketCapChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tecnologia" class="mb-16">
+            <h1 class="text-4xl font-bold text-slate-900 mb-2">Tecnologia e Inteligência Artificial</h1>
+            <p class="text-lg text-slate-600 mb-8">Os avanços, investimentos e debates que estão moldando o futuro da tecnologia e da IA no cenário global.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="content-card">
+                    <h3 class="text-xl font-bold mb-3">🚀 Avanços e Inovações</h3>
+                    <ul class="space-y-3 text-slate-600 text-sm">
+                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">Raciocínio Nível Ouro:</strong> Modelo da OpenAI resolve problemas da Olimpíada Internacional de Matemática.</span></li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">IA em Hollywood:</strong> Netflix usa IA generativa para criar efeitos visuais 10x mais rápido e barato.</span></li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">CGI Realista:</strong> Ferramenta da NVIDIA insere elementos 3D em vídeos com realismo impressionante.</span></li>
                     </ul>
                 </div>
-                <div class="mt-8">
-                    <h3 class="font-bold text-accent mb-2">📥 Importados</h3>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Combustíveis e lubrificantes</li>
-                        <li>Máquinas e equipamentos</li>
-                        <li>Produtos químicos e fármacos</li>
-                        <li>Componentes eletrônicos</li>
-                        <li>Fertilizantes</li>
+                <div class="content-card">
+                    <h3 class="text-xl font-bold mb-3">💰 Mercado e Investimentos</h3>
+                    <ul class="space-y-3 text-slate-600 text-sm">
+                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">Modo Agente:</strong> ChatGPT agora pode executar ações como compras e reservas em nome do usuário.</span></li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">"Superintelligence Labs":</strong> Meta anuncia nova divisão e investimentos de centenas de bilhões em IA.</span></li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">Boom de Startups:</strong> Financiamento de startups de IA nos EUA salta 75%, representando 64% de todo o valor de venture capital.</span></li>
+                    </ul>
+                </div>
+                 <div class="content-card">
+                    <h3 class="text-xl font-bold mb-3">🏛️ Regulação e Geopolítica</h3>
+                    <ul class="space-y-3 text-slate-600 text-sm">
+                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">Ação da Casa Branca:</strong> EUA preparam ordens executivas para impulsionar o desenvolvimento de IA no país.</span></li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">Lei de IA da UE:</strong> Entra em vigor com regras rígidas para modelos de alto risco e multas pesadas por não conformidade.</span></li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">Defesa e Segurança:</strong> Pentágono contrata OpenAI, Google e outras para prototipar sistemas de IA de fronteira para defesa.</span></li>
                     </ul>
                 </div>
             </div>
+        </section>
 
-            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-center mb-4">Projeção da Balança Comercial Anual</h2>
-                <p class="text-center text-gray-600 mb-4 text-sm">As projeções para o ano indicam um superávit consistente, mantendo o Brasil como um player superavitário relevante no comércio mundial, mesmo diante de um cenário global desafiador.</p>
-                <div class="chart-container h-[350px] md:h-full">
-                    <canvas id="balanceProjectionChart"></canvas>
-                </div>
-            </div>
+    </main>
+    
+    <footer class="bg-slate-800 text-white mt-16">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-sm text-slate-400">
+            <p>Relatório gerado em 25 de Julho de 2025. Todos os dados são baseados em fontes públicas e notícias do período.</p>
+            <p>Este é um infográfico interativo para fins de demonstração.</p>
+        </div>
+    </footer>
 
-            <!-- Section: Iniciativas para o Futuro do Comércio -->
-            <div id="initiatives" class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-center mb-4">Iniciativas para o Futuro do Comércio</h2>
-                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">O Brasil avança com modernização, novos acordos e inclusão social para garantir um crescimento sustentável e competitivo no longo prazo.</p>
-                <div class="flex flex-col md:flex-row items-center justify-center">
-                    <div class="flow-step">
-                        <h3 class="font-bold">Modernização</h3>
-                        <p class="text-xs">Portal Único Comex agiliza e simplifica processos.</p>
-                    </div>
-                    <div class="flow-arrow hidden md:block">→</div>
-                    <div class="flow-step my-4 md:my-0">
-                        <h3 class="font-bold">Novos Acordos</h3>
-                        <p class="text-xs">Parcerias estratégicas (EFTA, EAU) abrem novos mercados.</p>
-                    </div>
-                    <div class="flow-arrow hidden md:block">→</div>
-                    <div class="flow-step">
-                         <h3 class="font-bold">Inclusão e Diversidade</h3>
-                        <p class="text-xs">Iniciativas como 'Raízes Comex' capacitam novos talentos.</p>
-                    </div>
-                </div>
-            </div>
+<script>
+// Custom plugin to draw labels next to bars
+const barLabelsPlugin = {
+    id: 'barLabels',
+    afterDatasetDraw(chart, args, options) {
+        const { ctx, chartArea: { left, right, top, bottom }, scales: { x, y } } = chart;
 
-            <!-- Section: Inovações Tecnológicas e Inteligência Artificial -->
-            <div id="tech-ai" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-center mb-4">Inovações Tecnológicas e Inteligência Artificial</h2>
-                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">O ano de 2025 marca a transição da IA para a implementação generalizada, com avanços em computação quântica, BCIs e robótica, mas também desafios éticos e geopolíticos.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Agentes de IA e Micro LLMs</h3>
-                        <p class="text-gray-700 text-sm">Agentes de IA realizam tarefas empresariais autônomas, otimizando fluxos de trabalho. Modelos menores e especializados (Micro LLMs) ganham força pela eficiência e controle, democratizando o acesso à IA.</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Computação Quântica</h3>
-                        <p class="text-gray-700 text-sm">Foco na estabilização de qubits e correção de erros, com aumento de US$ 2 bilhões em investimentos em startups em 2024. Empresas como D-Wave lançam computadores quânticos comerciais.</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Interfaces Cérebro-Computador (BCI)</h3>
-                        <p class="text-gray-700 text-sm">Avanços na tradução de sinais cerebrais em fala (97% de precisão) e controle de dispositivos com o pensamento. Mercado de BCI deve crescer para US$ 15,14 bilhões até 2035, com foco em saúde e simbiose humano-IA.</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Robótica Avançada</h3>
-                        <p class="text-gray-700 text-sm">Robôs colaborativos (cobots), móveis autônomos (AMRs) e robótica suave transformam manufatura e logística. Robôs cirúrgicos e exoesqueletos melhoram saúde e segurança no trabalho.</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Biotecnologia e Biologia Sintética</h3>
-                        <p class="text-gray-700 text-sm">IA acelera descoberta de medicamentos (30% dos novos até 2025) e otimiza ensaios clínicos. Edição genética (CRISPR-Cas9) e terapias celulares prometem curas para doenças genéticas.</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Bitchat: Novo app para troca de mensagens</h3>
-                        <p class="text-gray-700 text-sm">Ex-fundador do Twitter, Jack Dorsey, lança o Bitchat, um novo aplicativo de mensagens que não precisa de internet e sim o Bluetooth para comunicação entre celulares. A proposta é ser uma alternativa para comunicação em tempos de censura.</p>
-                    </div>
-                </div>
-            </div>
+        ctx.save();
+        ctx.font = 'bold 12px Inter, sans-serif'; // Ajustar a fonte conforme necessário
+        ctx.fillStyle = '#475569'; // Cor do texto (slate-600)
 
-            <!-- Section: Finanças e Cenário Econômico -->
-            <div id="finance" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-center mb-4">Finanças e Cenário Econômico</h2>
-                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">O cenário financeiro brasileiro é influenciado por projeções de superávit e investimentos, mas também por tensões comerciais globais. Dados abaixo são exemplos e não refletem cotações em tempo real.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Superávit Comercial: Projeções Divergentes</h3>
-                        <p class="text-gray-700 text-sm">O MDIC projeta um superávit de US$ 50,4 bilhões para 2025, impulsionado por políticas externas. Já a AEB mantém uma visão mais otimista, prevendo US$ 93 bilhões, impulsionado pela recuperação das commodities.</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Investimento Estrangeiro Direto (IED)</h3>
-                        <p class="text-gray-700 text-sm">O IED no Brasil registrou queda de 8% em 2025, seguindo uma tendência global (-11%). No entanto, o setor de turismo se destaca com um aumento impressionante de 88% no IED no primeiro trimestre de 2025.</p>
-                    </div>
-                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Indicadores Econômicos Chave</h3>
-                        <ul class="list-none space-y-2 text-gray-700 text-sm">
-                            <li>Inflação (Brasil): Projeção reduzida pela 7ª semana seguida, indicando otimismo.</li>
-                            <li>Taxa Selic (Brasil): Mediana para o fim de 2025 em 15,0%, com expectativa de interrupção do ciclo de alta.</li>
-                            <li>PIB (Brasil): Mediana para 2025 em 2,23%, com BC elevando estimativa para 2,1%.</li>
-                        </ul>
-                    </div>
-                    <div class="md:col-span-2 lg:col-span-3 bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Impacto das Disputas Comerciais</h3>
-                        <p class="text-gray-700 text-sm">A ameaça de tarifa de 50% dos EUA pode causar retração de 0,5% do PIB e perda de US$ 9,4 bilhões na balança comercial brasileira, afetando setores como carne, café e siderurgia.</p>
-                    </div>
+        chart.data.datasets.forEach((dataset, datasetIndex) => {
+            const meta = chart.getDatasetMeta(datasetIndex);
+            if (!meta.hidden) {
+                meta.data.forEach((bar, index) => {
+                    const label = chart.data.labels[index];
+                    const dataValue = dataset.data[index];
 
-                    <!-- Cotações de Moedas -->
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Cotações de Moedas (Valores de Referência)</h3>
-                        <ul class="list-none space-y-2 text-gray-700 text-sm">
-  		                <li>Dólar Americano (USD): R$ 5,58</li>
-				<li>Euro (EUR): R$ 6,48</li>
-				<li>Libra Esterlina (GBP): R$ 7,48</li>
-				<li>Dólar Canadense (CAD): R$ 4,06</li>
-				<li>Yuan Chinês (CNY): R$ 0,78</li>
-                        </ul>
-                    </div>
+                    let textX;
+                    let textY = bar.y; // Centralizar verticalmente na barra
 
-                    <!-- Criptomoedas -->
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Criptomoedas (Valores de Referência em BRL)</h3>
-                        <ul class="list-none space-y-2 text-gray-700 text-sm">
-		                <li>Bitcoin (BTC): R$ 654.295,53</li>
-				<li>Ethereum (ETH): R$ 17.451,35</li>
-				<li>XRP (XRP): R$ 16,23</li>
-				<li>Tether USDt (USDT): R$ 5,56</li>
-				<li>BNB (BNB): R$ 3.839,04</li>
-				<li>Solana (SOL): R$ 911,12</li>
-				<li>USD Coin (USDC): R$ 5,56</li>                         
-                        </ul>
-                    </div>
-                    
-                    <!-- Principais Bolsas do Mundo -->
-                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Principais Bolsas do Mundo (Índices e Capitalização)</h3>
-                        <ul class="list-none space-y-2 text-gray-700 text-sm">
-                            <li>NYSE (EUA): ~US$ 25-31,7 trilhões (DJIA: ~44.484 pts, S&P 500: ~6.297 pts)</li>
-                            <li>Nasdaq (EUA): ~US$ 21,7-30,7 trilhões (NASDAQ Composite: ~20.885 pts)</li>
-                            <li>Euronext (Europa): ~US$ 6,2-7,2 trilhões (CAC 40: ~7.842 pts, DAX: ~24.361 pts, FTSE 100: ~8.993 pts)</li>
-                            <li>Shanghai Stock Exchange (China): ~US$ 6,5-7 trilhões (SSE Composite: ~3.534 pts)</li>
-                            <li>Japan Exchange Group (Japão): ~US$ 5,9-6,9 trilhões (Nikkei 225: ~39.819 pts)</li>
-                            <li>B3 (Brasil): ~US$ 0,9 trilhão (Ibovespa: ~135.565 pts)</li>
-                        </ul>
-                    </div>
+                    ctx.textBaseline = 'middle';
 
-                    <!-- Ações na Bolsa Brasileira -->
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Principais Empresas na Bolsa Brasileira (Valor de Mercado)</h3>
-                        <ul class="list-none space-y-2 text-gray-700 text-sm">
-                            <li>Petrobras (PETR4): ~R$ 426-439 bilhões</li>
-                            <li>Itaú Unibanco (ITUB4): ~R$ 361-377 bilhões</li>
-                            <li>Vale (VALE3): ~R$ 227-251 bilhões</li>
-                            <li>Ambev (ABEV3): ~R$ 208 bilhões</li>
-                            <li>BTG Pactual (BPAC11): ~R$ 204 bilhões</li>
-                        </ul>
-                    </div>
-
-                    <!-- Ações na Bolsa Americana -->
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Principais Empresas na Bolsa Americana (Valor de Mercado)</h3>
-                        <ul class="list-none space-y-2 text-gray-700 text-sm">
-                            <li>Microsoft (MSFT): ~US$ 3,8 trilhões</li>
-                            <li>Apple (AAPL): ~US$ 3,14 trilhões</li>
-                            <li>NVIDIA (NVDA): ~US$ 2,37 trilhões</li>
-                            <li>Amazon (AMZN): ~US$ 2,38 trilhões</li>
-                            <li>Alphabet (GOOG / GOOGL): ~US$ 2,23 trilhões</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Section: Empresas em Ascensão (Últimos 3 Meses) -->
-            <div id="ascension" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-center mb-4">Empresas em Ascensão (Últimos 3 Meses)</h2>
-                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">Análise das empresas que se destacaram com valorização nas bolsas americana e brasileira no período recente.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Bolsa Americana</h3>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
-                            <li>NVIDIA (NVDA): +42,98% (no ano até 17/07/2025)</li>
-                            <li>Meta Platforms Inc. (META): +47,40% (no ano até 17/07/2025)</li>
-                            <li>Broadcom (AVGO): +78,54% (no ano até 17/07/2025)</li>
-                            <li>Oracle (ORCL): +80,48% (no ano até 17/07/2025)</li>
-                            <li>Netflix (NFLX): +98,17% (no ano até 17/07/2025)</li>
-                            <li>Palantir Technologies (PLTR): +437,67% (no ano até 17/07/2025)</li>
-                            <li>General Electric Aerospace (GE): +64,05% (no ano até 17/07/2025)</li>
-                            <li>Philip Morris International (PM): +66,78% (no ano até 17/07/2025)</li>
-                            <li>IBM (IBM): +52,27% (no ano até 17/07/2025)</li>
-                            <li>Cisco Systems (CSCO): +42,24% (no ano até 17/07/2025)</li>
-                        </ul>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Bolsa Brasileira</h3>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
-                            <li>MRV (MRVE3): +20,42% (em junho/2025)</li>
-                            <li>Embraer (EMBR3): +17,59% (em junho/2025)</li>
-                            <li>TIM (TIMS3): +13,13% (em junho/2025)</li>
-                            <li>Engie Brasil (EGIE3): +10,59% (em junho/2025)</li>
-                            <li>Marcopolo (POMO4): +9,79% (em junho/2025)</li>
-                            <li>Grupo Pão de Açúcar (PCAR3): +23,61% (últimos 30 dias)</li>
-                            <li>Oncoclínicas (ONCO3): +22,32% (últimos 30 dias)</li>
-                            <li>WEG (WEGE3): +45,5% (em 2024)</li>
-                            <li>Marfrig (MRFG3): +104,76% (em 2024)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Section: Empresas em Queda (Últimos 6 Meses) -->
-            <div id="decline" class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-center mb-4">Empresas em Queda (Últimos 6 Meses)</h2>
-                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm">Panorama das empresas que registraram desvalorização nas bolsas americana e brasileira no período recente.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Bolsa Americana</h3>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
-                            <li>Tesla (TSLA): -23% (no ano até jul/2025)</li>
-                            <li>Eli Lilly (LLY): -10,13% (no ano até jul/2025)</li>
-                            <li>Exxon Mobil (XOM): -5,99% (no ano até jul/2025)</li>
-                            <li>Chevron (CVX): -6,58% (no ano até jul/2025)</li>
-                            <li>P&G (PG): -7,54% (no ano até jul/2025)</li>
-                            <li>UnitedHealth (UNH): -48,92% (no ano até jul/2025)</li>
-                            <li>Merck (MRK): -34,39% (no ano até jul/2025)</li>
-                        </ul>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <h3 class="font-bold text-accent mb-2">Bolsa Brasileira</h3>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
-                            <li>Magazine Luiza (MGLU3): -69,72% (em 2024)</li>
-                            <li>Cogna (COGN3): -68,77% (em 2024)</li>
-                            <li>Yduqs (YDUQ3): -61,18% (em 2024)</li>
-                            <li>CVC Brasil (CVCB3): -60,57% (em 2024)</li>
-                            <li>Azul (AZUL4): -77,89% (em 2024)</li>
-                            <li>Usiminas (USIM5): -20,77% (em junho/2025)</li>
-                            <li>Braskem (BRKM5): -17,62% (em junho/2025)</li>
-                            <li>São Martinho (SMTO3): -16,97% (em junho/2025)</li>
-                            <li>Cosan (CSAN3): -16,65% (em junho/2025)</li>
-                            <li>Vamos (VAMO3): -15,90% (em junho/2025)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <script>
-        function wrapLabels(label) {
-            const maxLength = 16;
-            if (typeof label === 'string' && label.length > maxLength) {
-                const words = label.split(' ');
-                const lines = [];
-                let currentLine = '';
-                words.forEach(word => {
-                    if ((currentLine + word).length > maxLength) {
-                        lines.push(currentLine.trim());
-                        currentLine = '';
+                    // Posicionar a label com base no valor da barra (positivo/negativo)
+                    if (dataValue >= 0) {
+                        textX = bar.x + 5; // À direita do final da barra
+                        ctx.textAlign = 'left';
+                    } else {
+                        textX = bar.x - 5; // À esquerda do final da barra
+                        ctx.textAlign = 'right';
                     }
-                    currentLine += word + ' ';
-                });
-                lines.push(currentLine.trim());
-                return lines;
-            }
-            return label;
-        }
 
-        const tooltipTitleCallback = {
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        title: function(tooltipItems) {
-                            const item = tooltipItems[0];
-                            let label = item.chart.data.labels[item.dataIndex];
-                            if (Array.isArray(label)) {
-                                return label.join(' ');
+                    // Lógica para truncar a label se for muito longa para caber
+                    let maxLabelWidth;
+                    if (ctx.textAlign === 'left') {
+                        maxLabelWidth = right - textX - 10;
+                    } else { // ctx.textAlign === 'right'
+                        maxLabelWidth = textX - left - 10;
+                    }
+
+                    let displayLabel = label;
+                    if (maxLabelWidth > 0 && ctx.measureText(label).width > maxLabelWidth) {
+                        let tempLabel = '';
+                        for (let i = 0; i < label.length; i++) {
+                            if (ctx.measureText(tempLabel + label[i] + '...').width < maxLabelWidth) {
+                                tempLabel += label[i];
+                            } else {
+                                break;
                             }
-                            return label;
                         }
+                        displayLabel = tempLabel + '...';
+                    }
+
+                    ctx.fillText(displayLabel, textX, textY);
+                });
+            }
+        });
+        ctx.restore();
+    }
+};
+
+// Registrar o plugin globalmente
+Chart.register(barLabelsPlugin);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const positiveColor = '#2563eb';
+    const negativeColor = '#ef4444';
+
+    const defaultChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                backgroundColor: '#1e293b',
+                titleColor: '#f1f5f9',
+                bodyColor: '#cbd5e1',
+                boxPadding: 5,
+                callbacks: {
+                    label: function(context) {
+                        let label = context.dataset.label || '';
+                        if (label) {
+                            label += ': ';
+                        }
+                        // Para marketCapChart, o callback do tooltip é diferente.
+                        // Este padrão será sobrescrito para marketCapChart.
+                        if (context.parsed.x !== null) {
+                            label += context.parsed.x.toFixed(2) + '%';
+                        }
+                        return label;
                     }
                 }
+            },
+            // Habilitar o plugin personalizado
+            barLabels: {} // Nenhuma opção específica necessária por enquanto
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: '#475569'
+                },
+                grid: {
+                    display: false
+                }
+            },
+            y: {
+                ticks: {
+                    color: '#475569',
+                    // O plugin personalizado desenhará as labels internamente,
+                    // então podemos deixar as labels do eixo menos proeminentes ou até ocultá-las
+                    callback: function(value) {
+                        if (value.length > 16) return value.substring(0, 16) + '...';
+                        return value;
+                    }
+                },
+                grid: {
+                    color: '#e2e8f0'
+                }
             }
-        };
-        
-        const brilliantBluesPalette = {
-            primary: '#004AAD',
-            secondary: '#009FFD',
-            light: 'rgba(0, 159, 253, 0.2)',
-            dark: '#242424'
-        };
+        },
+        indexAxis: 'y',
+    };
 
-        const exportPartnersData = {
-            labels: ['China', 'União Europeia', 'Estados Unidos', 'Argentina', 'Outros'],
-            datasets: [{
-                label: 'Participação nas Exportações',
-                data: [28, 17, 11, 5, 39],
-                backgroundColor: [
-                    '#004AAD',
-                    '#007ACC',
-                    '#009FFD',
-                    '#4DBEEE',
-                    '#9ADCFB'
-                ],
-                borderColor: '#F2F2F2',
-                borderWidth: 2
-            }]
-        };
-        new Chart(document.getElementById('exportPartnersChart'), {
-            type: 'doughnut',
-            data: exportPartnersData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: tooltipTitleCallback.plugins
-            }
-        });
+    const BolsasChartCtx = document.getElementById('bolsasChart').getContext('2d');
+    const bolsasData = {
+        labels: ['S&P 500', 'Nasdaq', 'Dow Jones', 'Ibovespa', 'FTSE 100', 'DAX', 'Nikkei 225'],
+        datasets: [{
+            label: 'Variação Diária (%)',
+            data: [0.17, 0.02, 0.16, -0.17, -0.20, -0.32, -0.88],
+            backgroundColor: (context) => context.raw >= 0 ? positiveColor : negativeColor,
+            borderColor: (context) => context.raw >= 0 ? positiveColor : negativeColor,
+            borderWidth: 1
+        }]
+    };
+    new Chart(BolsasChartCtx, {
+        type: 'bar',
+        data: bolsasData,
+        options: defaultChartOptions
+    });
 
-        const importPartnersData = {
-            labels: ['China', 'Estados Unidos', ['União', 'Europeia'], 'Outros'],
-            datasets: [{
-                label: 'Participação nas Importações',
-                data: [22, 18, 16, 44],
-                backgroundColor: [
-                    '#004AAD',
-                    '#007ACC',
-                    '#009FFD',
-                    '#9ADCFB'
-                ],
-                borderColor: '#F2F2F2',
-                borderWidth: 2
-            }]
-        };
-        new Chart(document.getElementById('importPartnersChart'), {
-            type: 'pie',
-            data: importPartnersData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: tooltipTitleCallback.plugins
-            }
-        });
+    const ascensaoChartCtx = document.getElementById('ascensaoChart').getContext('2d');
+    const ascensaoData = {
+        labels: ['Cogna (BR)', 'Yduqs (BR)', 'Assaí (BR)', 'Palantir (EUA)', 'NRG Energy (EUA)', 'Howmet (EUA)'],
+        datasets: [{
+            label: 'Variação 3 Meses (%)',
+            data: [162, 101.1, 99.1, 80.2, 78.0, 70.2],
+            backgroundColor: positiveColor,
+            borderColor: positiveColor,
+            borderWidth: 1
+        }]
+    };
+    new Chart(ascensaoChartCtx, {
+        type: 'bar',
+        data: ascensaoData,
+        options: defaultChartOptions
+    });
 
-        const balanceProjectionData = {
-            labels: ['2021', '2022', '2023 (Recorde)', '2024', '2025 (Proj.)'],
-            datasets: [{
-                label: 'Superávit da Balança (US$ Bi)',
-                data: [61.4, 62.3, 98.9, 74.5, 70.2],
-                backgroundColor: brilliantBluesPalette.light,
-                borderColor: brilliantBluesPalette.secondary,
-                borderWidth: 3,
-                fill: true,
-                tension: 0.3
-            }]
-        };
-        
-        const processedBalanceLabels = balanceProjectionData.labels.map(wrapLabels);
-        balanceProjectionData.labels = processedBalanceLabels;
+    const quedaChartCtx = document.getElementById('quedaChart').getContext('2d');
+    const quedaData = {
+        labels: ['Deckers (EUA)', 'Enphase (EUA)', 'UnitedHealth (EUA)', 'Lululemon (EUA)', 'RD Saúde (BR)', 'Brava (BR)'],
+        datasets: [{
+            label: 'Variação 6 Meses (%)',
+            data: [-49.2, -42.3, -38.3, -37.9, -30.3, -24.1],
+            backgroundColor: negativeColor,
+            borderColor: negativeColor,
+            borderWidth: 1
+        }]
+    };
+    new Chart(quedaChartCtx, {
+        type: 'bar',
+        data: quedaData,
+        options: defaultChartOptions
+    });
 
-        new Chart(document.getElementById('balanceProjectionChart'), {
-            type: 'line',
-            data: balanceProjectionData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        ticks: {
-                            callback: function(value) {
-                                return '$' + value + ' bi';
-                            }
+    const marketCapCtx = document.getElementById('marketCapChart').getContext('2d');
+    const marketCapData = {
+        labels: ['Apple', 'Microsoft', 'Nvidia', 'Amazon', 'Alphabet', 'Meta', 'Broadcom'],
+        datasets: [{
+            label: 'Valor de Mercado (US$ Trilhões)',
+            data: [3.2, 2.93, 2.62, 2.47, 1.93, 1.38, 1.37],
+            backgroundColor: 'rgba(37, 99, 235, 0.8)',
+            borderColor: 'rgba(37, 99, 235, 1)',
+            borderWidth: 1
+        }]
+    };
+    new Chart(marketCapCtx, {
+        type: 'bar',
+        data: marketCapData,
+        options: {
+            ...defaultChartOptions,
+            plugins: {
+                ...defaultChartOptions.plugins,
+                tooltip: {
+                    ...defaultChartOptions.plugins.tooltip,
+                    callbacks: {
+                        label: function(context) {
+                            return ` ${context.raw.toFixed(2)} Trilhões USD`;
                         }
                     }
                 },
-                plugins: tooltipTitleCallback.plugins
+                barLabels: {} // Habilitar o plugin também para este gráfico
             }
+        }
+    });
+
+    const navLinks = document.querySelectorAll('header a[href^="#"]');
+    navLinks.forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
         });
-    </script>
+    });
+});
+</script>
+
 </body>
 </html>
 
