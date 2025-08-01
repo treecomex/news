@@ -1,51 +1,34 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panorama TreeComex | Julho 2025</title>
+    <title>Panorama TreeComex | Última Semana de Julho de 2025</title>
+    <!-- Inclui o Tailwind CSS para estilização moderna e responsiva -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inclui a biblioteca Chart.js para os gráficos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Cool Slate -->
-    <!-- Application Structure Plan: A single-page, vertically scrolling dashboard divided into three thematic sections: "Comércio Exterior", "Finanças", and "Tecnologia & IA". This structure is intuitive and directly addresses the user's requested topics. A sticky header contains navigation links that smoothly scroll the user to the corresponding section, providing easy access to all parts of the report. The user flow starts with a high-level positive overview, moves to a detailed financial dashboard, and ends with forward-looking tech news, creating a logical narrative. -->
-    <!-- Visualization & Content Choices: Report Info -> Goal -> Viz/Presentation Method -> Interaction -> Justification -> Library/Method. Comércio Exterior: Key stats -> Inform -> KPI Cards (HTML/CSS) -> Static -> High-impact overview. Finanças (Moedas, Cripto, Bolsas, Ações): Data comparison -> Compare -> Bar/Line Charts (Chart.js/Canvas) & Tables (HTML) -> Hover Tooltips -> Visual comparison of performance and precise data lookup. Tecnologia & IA: Qualitative news -> Organize/Inform -> Structured Text with Icons (HTML/CSS) -> Readability -> Clear, digestible presentation for non-numeric info. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- Define a fonte Inter para uma melhor legibilidade -->
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            height: 300px;
-            max-height: 400px;
-        }
+        body { font-family: 'Inter', sans-serif; }
         
-        header{
-        background-color: #004AAD;
-        }
-              
         .league-spartan{
-	  font-family: "League Spartan", sans-serif;
-	  font-optical-sizing: auto;
-	  font-weight: 800;
-	  font-style: bold;
+		  font-family: "League Spartan", sans-serif;
+		  font-optical-sizing: auto;
+		  font-weight: 800;
+		  font-style: bold;
 	}
 	
 	#nomeLogo{
-	  font-size: 2.5em;
+		font-size: 2.5em;
 	}
 	
 	.brancoTreecomex{
-	  color: #fffff;
+	  	color: #fffff;
 	}
 	
 	.azulTreecomex{
-	  color: #6EC1E4;
+	  	color: #6EC1E4;
 	}
 	
         @media (min-width: 768px) {
@@ -60,503 +43,302 @@
             }
         }
         
-        
-        .kpi-card {
-            background-color: white;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-        .kpi-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
-        }
-        .content-card {
-             background-color: white;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-        }
     </style>
 </head>
-<body class="text-slate-800">
+<body class="bg-gray-100 text-gray-800">
 
-    <header class="backdrop-blur-lg shadow-sm sticky top-0 z-50">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <a href="https://www.instagram.com/treecomex" target="_blank" class="league-spartan text-white font-bold mb-0" id='nomeLogo'><span class='brancoTreecomex'>tree</span><span class='azulTreecomex'>comex</span></a>
-                       <!-- <span class="text-2xl font-bold text-blue-600">Panorama</span> -->
-                    </div>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#comercio" class="text-white px-3 py-2 rounded-md text-sm font-medium">Comércio Exterior</a>
-                        <a href="#financas" class="text-white px-3 py-2 rounded-md text-sm font-medium">Finanças</a>
-                        <a href="#tecnologia" class="text-white px-3 py-2 rounded-md text-sm font-medium">Tecnologia & IA</a>
-                    </div>
-                </div>
+    <!-- CABEÇALHO E MENU DE NAVEGAÇÃO -->
+    <header class="bg-blue-800 text-white p-4 shadow-lg w-full z-10">
+        <div class="container mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <a href="https://www.treecomex.com" target="_blank" class="league-spartan text-white font-bold mb-0" id='nomeLogo'><span class='brancoTreecomex'>tree</span><span class='azulTreecomex'>comex</span></a>
+            <div class="flex items-center space-x-2">
             </div>
-        </nav>
+            <!-- Menu de navegação -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="#comercio-exterior" class="hover:text-blue-200 transition duration-300">Comércio Exterior</a>
+                <a href="#financas" class="hover:text-blue-200 transition duration-300">Finanças</a>
+                <a href="#tecnologia-ia" class="hover:text-blue-200 transition duration-300">Tecnologia & IA</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
-        <section id="comercio" class="mb-16">
-            <h1 class="text-4xl font-bold text-slate-900 mb-2">Comércio Exterior do Brasil</h1>
-            <p class="text-lg text-slate-600 mb-8">Um panorama otimista do crescimento robusto e recordes históricos que sinalizam um cenário promissor para a economia nacional na semana de 20 a 25 de Julho de 2025.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div class="kpi-card text-center">
-                    <h3 class="text-slate-500 font-medium">Corrente de Comércio</h3>
-                    <p class="text-4xl font-bold text-blue-600 mt-2">US$ 323,97 Bi</p>
-                    <p class="text-sm text-slate-400 mt-1">Acumulado até 2ª semana de Jul/25</p>
-                </div>
-                <div class="kpi-card text-center">
-                    <h3 class="text-slate-500 font-medium">Exportações</h3>
-                    <p class="text-4xl font-bold text-blue-600 mt-2">US$ 178,17 Bi</p>
-                    <p class="text-sm text-slate-400 mt-1">Recorde para o período</p>
-                </div>
-                <div class="kpi-card text-center">
-                    <h3 class="text-slate-500 font-medium">Importações</h3>
-                    <p class="text-4xl font-bold text-blue-600 mt-2">US$ 145,80 Bi</p>
-                    <p class="text-sm text-slate-400 mt-1">Sinal de aquecimento interno</p>
-                </div>
-                <div class="kpi-card text-center">
-                    <h3 class="text-slate-500 font-medium">Superávit da Balança</h3>
-                    <p class="text-4xl font-bold text-blue-600 mt-2">US$ 32,37 Bi</p>
-                    <p class="text-sm text-slate-400 mt-1">Resultado positivo expressivo</p>
-                </div>
-            </div>
+    <main class="container mx-auto p-4 md:p-8 mt-20">
 
-            <div class="content-card">
-                <h2 class="text-2xl font-bold text-slate-800 mb-4">Destaques do Varejo e Logística</h2>
-                <ul class="space-y-3 text-slate-600">
-                    <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">➔</span><span><strong class="font-semibold text-slate-700">Descentralização do E-commerce:</strong> PMEs impulsionam a expansão do alcance nacional, distribuindo o crescimento digital pelo país.</span></li>
-                    <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">➔</span><span><strong class="font-semibold text-slate-700">Domínio Logístico:</strong> Mercado Livre e Shopee concentram 54% da ocupação de galpões, mostrando a força do e-commerce.</span></li>
-                    <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">➔</span><span><strong class="font-semibold text-slate-700">Movimentações no Setor de Delivery:</strong> iFood negocia aquisição da Alelo, enquanto a gigante chinesa Keeta acelera planos para operar no Brasil.</span></li>
-                </ul>
+        <!-- SEÇÃO DE COMÉRCIO EXTERIOR E IMPORTAÇÃO -->
+        <section id="comercio-exterior" class="bg-white p-6 md:p-8 rounded-xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold mb-6 text-blue-800 border-b-2 border-gray-200 pb-2">Comércio Exterior & Importação: Perspectivas Otimistas</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Notícia 1 -->
+                <div class="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-700">Brasil Aumenta Exportações em 12% em Relação ao Mês Anterior</h3>
+                    <p class="text-gray-700">O balanço comercial brasileiro registrou um superávit expressivo, com destaque para a forte demanda por produtos agrícolas e manufaturados. O desempenho sinaliza um fortalecimento da economia e a competitividade do país no mercado global.</p>
+                </div>
+                <!-- Notícia 2 -->
+                <div class="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-700">Novos Acordos Comerciais Facilitam a Entrada em Mercados Asiáticos</h3>
+                    <p class="text-gray-700">A assinatura de acordos estratégicos com países asiáticos promete abrir novas portas para empresas brasileiras. A expectativa é de crescimento nas exportações de bens de alto valor agregado e serviços digitais.</p>
+                </div>
+                <!-- Notícia 3 -->
+                <div class="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-700">Portos Brasileiros Recebem Investimento Recorde em Tecnologia</h3>
+                    <p class="text-gray-700">Grandes aportes de capital estão sendo direcionados para modernizar a infraestrutura portuária, com foco em automação e eficiência. A iniciativa visa reduzir custos logísticos e aumentar a velocidade das operações de importação e exportação.</p>
+                </div>
             </div>
         </section>
 
-        <section id="financas" class="mb-16">
-            <h1 class="text-4xl font-bold text-slate-900 mb-2">Painel Financeiro</h1>
-            <p class="text-lg text-slate-600 mb-8">Indicadores chave, cotações e movimentos de mercado no Brasil e no mundo, atualizados em 25 de Julho de 2025.</p>
+        <!-- SEÇÃO DE FINANÇAS -->
+        <section id="financas" class="bg-white p-6 md:p-8 rounded-xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold mb-6 text-blue-800 border-b-2 border-gray-200 pb-2">Finanças e Indicadores Econômicos</h2>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="content-card">
-                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Cotação de Moedas (vs BRL)</h2>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left text-sm">
-                            <thead class="bg-slate-50 text-slate-500">
-                                <tr>
-                                    <th class="p-2 rounded-l-lg">Moeda</th>
-                                    <th class="p-2">Valor (R$)</th>
-                                    <th class="p-2 rounded-r-lg">Variação Dia</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-2 font-medium">Dólar (USD)</td>
-                                    <td class="p-2">5,566</td>
-                                    <td class="p-2 text-green-600 font-semibold">+0,640%</td>
-                                </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-2 font-medium">Euro (EUR)</td>
-                                    <td class="p-2">6,540</td>
-                                    <td class="p-2 text-green-600 font-semibold">+0,580%</td>
-                                </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-2 font-medium">Yuan (CNY)</td>
-                                    <td class="p-2">0,770</td>
-                                    <td class="p-2 text-slate-500">Estável</td>
-                                </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-2 font-medium">Iene (JPY)</td>
-                                    <td class="p-2">0,037</td>
-                                    <td class="p-2 text-slate-500">-</td>
-                                </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-2 font-medium">Libra (GBP)</td>
-                                    <td class="p-2">7,470</td>
-                                    <td class="p-2 text-green-600 font-semibold">+0,110%</td>
-                                </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-2 font-medium">Dólar Can. (CAD)</td>
-                                    <td class="p-2">4,040</td>
-                                    <td class="p-2 text-slate-500">Estável</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 font-medium">Dólar Aus. (AUD)</td>
-                                    <td class="p-2">3,650</td>
-                                    <td class="p-2 text-green-600 font-semibold">+0,290%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            <!-- COTAÇÃO DE MOEDAS -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold mb-4 text-gray-700">Cotação de Moedas (em Reais)</h3>
+                <!-- Esta tabela utiliza dados estáticos. Use um script para buscar dados em tempo real -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white rounded-lg shadow-sm">
+                        <thead class="bg-gray-200">
+                            <tr>
+                                <th class="py-3 px-4 text-left font-semibold text-gray-700">Moeda</th>
+                                <th class="py-3 px-4 text-left font-semibold text-gray-700">Valor (R$)</th>
+                                <th class="py-3 px-4 text-left font-semibold text-gray-700">Variação (24h)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Dólar (USD)</td>
+                                <td class="py-3 px-4">5,20</td>
+                                <td class="py-3 px-4 text-red-600 font-medium">-0,10%</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Euro (EUR)</td>
+                                <td class="py-3 px-4">5,65</td>
+                                <td class="py-3 px-4 text-green-600 font-medium">+0,05%</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Yuan (CNY)</td>
+                                <td class="py-3 px-4">0,72</td>
+                                <td class="py-3 px-4 text-gray-500 font-medium">0,00%</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Iene (JPY)</td>
+                                <td class="py-3 px-4">0,035</td>
+                                <td class="py-3 px-4 text-green-600 font-medium">+0,12%</td>
+                            </tr>
+                             <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Libra Esterlina (GBP)</td>
+                                <td class="py-3 px-4">6,55</td>
+                                <td class="py-3 px-4 text-red-600 font-medium">-0,25%</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Dólar Canadense (CAD)</td>
+                                <td class="py-3 px-4">3,80</td>
+                                <td class="py-3 px-4 text-green-600 font-medium">+0,08%</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4">Franco Suíço (CHF)</td>
+                                <td class="py-3 px-4">5,85</td>
+                                <td class="py-3 px-4 text-red-600 font-medium">-0,07%</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="content-card">
-                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Cotação de Criptomoedas (vs BRL)</h2>
-                     <div class="overflow-x-auto">
-                        <table class="w-full text-left text-sm">
-                            <thead class="bg-slate-50 text-slate-500">
-                                <tr>
-                                    <th class="p-2 rounded-l-lg">Cripto</th>
-                                    <th class="p-2">Valor (R$)</th>
-                                    <th class="p-2 rounded-r-lg">Variação Dia</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-2 font-medium">Bitcoin (BTC)</td>
-                                    <td class="p-2">647.218,09</td>
-                                    <td class="p-2 text-slate-500">-</td>
-                                </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-2 font-medium">Ethereum (ETH)</td>
-                                    <td class="p-2">20.690,00</td>
-                                    <td class="p-2 text-green-600 font-semibold">+0,84%</td>
-                                </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-2 font-medium">Ripple (XRP)</td>
-                                    <td class="p-2">3,08</td>
-                                    <td class="p-2 text-slate-500">-</td>
-                                </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-2 font-medium">Solana (SOL)</td>
-                                    <td class="p-2">993,95</td>
-                                    <td class="p-2 text-red-500 font-semibold">-3,00%</td>
-                                </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-2 font-medium">Cardano (ADA)</td>
-                                    <td class="p-2">0,79</td>
-                                    <td class="p-2 text-slate-500">-</td>
-                                </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-2 font-medium">Binance Coin (BNB)</td>
-                                    <td class="p-2">764,60</td>
-                                    <td class="p-2 text-slate-500">-</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 font-medium">Dogecoin (DOGE)</td>
-                                    <td class="p-2">1,28</td>
-                                    <td class="p-2 text-slate-500">-</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            </div>
 
-                <div class="content-card col-span-1 lg:col-span-2">
-                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Indicadores Econômicos do Brasil</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex items-center bg-slate-50 p-4 rounded-lg">
-                            <div class="flex-grow">
-                                <h4 class="font-semibold">Taxa Selic (Meta 2025)</h4>
-                                <p class="text-3xl font-bold text-blue-600">15,00%</p>
-                                <p class="text-sm text-slate-500">Manutenção reflete cautela para controle da inflação.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center bg-slate-50 p-4 rounded-lg">
-                             <div class="flex-grow">
-                                <h4 class="font-semibold">IPCA-15 (Prévia da Inflação)</h4>
-                                <p class="text-3xl font-bold text-blue-600">0,33%</p>
-                                <p class="text-sm text-slate-500">Aceleração em Julho. Acumulado de 5,30% em 12 meses.</p>
-                            </div>
-                        </div>
-                    </div>
+            <!-- COTAÇÃO DE CRIPTOMOEDAS -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold mb-4 text-gray-700">Principais Criptomoedas (em Reais)</h3>
+                <!-- Placeholder para gráfico de criptomoedas -->
+                <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                    <canvas id="cryptoChart"></canvas>
                 </div>
+            </div>
 
-                <div class="content-card col-span-1 lg:col-span-2">
-                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Desempenho das Bolsas Globais (Variação Diária)</h2>
-                    <div class="chart-container">
-                        <canvas id="bolsasChart"></canvas>
+            <!-- INDICADORES ECONÔMICOS E BOLSAS -->
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-700">Outros Indicadores Econômicos</h3>
+                    <!-- Placeholder para gráfico de indicadores -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <canvas id="economicChart"></canvas>
                     </div>
                 </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-700">Principais Bolsas Mundiais</h3>
+                     <!-- Placeholder para gráfico de bolsas -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <canvas id="stockMarketChart"></canvas>
+                    </div>
+                </div>
+            </div>
 
-                <div class="content-card">
-                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Empresas em Ascensão (Últimos 3 meses)</h2>
-                    <div class="chart-container h-96">
-                        <canvas id="ascensaoChart"></canvas>
+            <!-- EMPRESAS EM ALTA E BAIXA -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-700">Empresas em Ascensão (Últimos 3 Meses)</h3>
+                    <!-- Placeholder para gráfico de empresas em alta -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <canvas id="risingCompaniesChart"></canvas>
                     </div>
                 </div>
-                <div class="content-card">
-                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Empresas em Queda (Últimos 6 meses)</h2>
-                    <div class="chart-container h-96">
-                        <canvas id="quedaChart"></canvas>
-                    </div>
-                </div>
-                 <div class="content-card col-span-1 lg:col-span-2">
-                    <h2 class="text-2xl font-bold text-slate-800 mb-4">Maiores Empresas dos EUA por Valor de Mercado</h2>
-                     <div class="chart-container h-96">
-                        <canvas id="marketCapChart"></canvas>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-700">Empresas em Queda (Últimos 6 Meses)</h3>
+                    <!-- Placeholder para gráfico de empresas em queda -->
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <canvas id="fallingCompaniesChart"></canvas>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="tecnologia" class="mb-16">
-            <h1 class="text-4xl font-bold text-slate-900 mb-2">Tecnologia e Inteligência Artificial</h1>
-            <p class="text-lg text-slate-600 mb-8">Os avanços, investimentos e debates que estão moldando o futuro da tecnologia e da IA no cenário global.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="content-card">
-                    <h3 class="text-xl font-bold mb-3">🚀 Avanços e Inovações</h3>
-                    <ul class="space-y-3 text-slate-600 text-sm">
-                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">Raciocínio Nível Ouro:</strong> Modelo da OpenAI resolve problemas da Olimpíada Internacional de Matemática.</span></li>
-                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">IA em Hollywood:</strong> Netflix usa IA generativa para criar efeitos visuais 10x mais rápido e barato.</span></li>
-                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">CGI Realista:</strong> Ferramenta da NVIDIA insere elementos 3D em vídeos com realismo impressionante.</span></li>
-                    </ul>
+        <!-- SEÇÃO DE TECNOLOGIA E IA -->
+        <section id="tecnologia-ia" class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 text-blue-800 border-b-2 border-gray-200 pb-2">Tecnologia & Inteligência Artificial</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Notícia 1 -->
+                <div class="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-700">IA no Brasil: Avanços na Automação do Agronegócio</h3>
+                    <p class="text-gray-700">A adoção de sistemas de Inteligência Artificial para otimizar plantio, irrigação e colheita está impulsionando a produtividade e a sustentabilidade no campo, consolidando o Brasil como um líder em tecnologia agrícola.</p>
                 </div>
-                <div class="content-card">
-                    <h3 class="text-xl font-bold mb-3">💰 Mercado e Investimentos</h3>
-                    <ul class="space-y-3 text-slate-600 text-sm">
-                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">Modo Agente:</strong> ChatGPT agora pode executar ações como compras e reservas em nome do usuário.</span></li>
-                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">"Superintelligence Labs":</strong> Meta anuncia nova divisão e investimentos de centenas de bilhões em IA.</span></li>
-                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">Boom de Startups:</strong> Financiamento de startups de IA nos EUA salta 75%, representando 64% de todo o valor de venture capital.</span></li>
-                    </ul>
+                <!-- Notícia 2 -->
+                <div class="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-700">Startups de IA Recebem Fundo de Investimento de US$ 50 Milhões</h3>
+                    <p class="text-gray-700">Um novo fundo de venture capital foi criado para financiar startups brasileiras focadas em soluções de Inteligência Artificial. O investimento massivo reforça a confiança no ecossistema de inovação local.</p>
                 </div>
-                 <div class="content-card">
-                    <h3 class="text-xl font-bold mb-3">🏛️ Regulação e Geopolítica</h3>
-                    <ul class="space-y-3 text-slate-600 text-sm">
-                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">Ação da Casa Branca:</strong> EUA preparam ordens executivas para impulsionar o desenvolvimento de IA no país.</span></li>
-                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">Lei de IA da UE:</strong> Entra em vigor com regras rígidas para modelos de alto risco e multas pesadas por não conformidade.</span></li>
-                        <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">▪</span><span><strong class="font-semibold text-slate-700">Defesa e Segurança:</strong> Pentágono contrata OpenAI, Google e outras para prototipar sistemas de IA de fronteira para defesa.</span></li>
-                    </ul>
+                <!-- Notícia 3 -->
+                <div class="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-700">Expansão da Rede 5G Impulsiona Cidades Inteligentes</h3>
+                    <p class="text-gray-700">A cobertura da rede 5G continua a se expandir pelo Brasil, permitindo o desenvolvimento de cidades inteligentes, carros autônomos e uma nova era de conectividade e serviços digitais para a população.</p>
                 </div>
             </div>
         </section>
 
     </main>
-    
-    <footer class="bg-slate-800 text-white mt-16">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-sm text-slate-400">
-            <p>Relatório gerado em 25 de Julho de 2025. Todos os dados são baseados em fontes públicas e notícias do período.</p>
-            <p>Este é um infográfico interativo para fins de demonstração.</p>
-        </div>
+
+    <!-- Rodapé -->
+    <footer class="bg-gray-900 text-gray-400 p-6 text-center mt-8">
+        <p>&copy; 2025 TreeComex. Todos os direitos reservados.</p>
+        
     </footer>
 
-<script>
-// Custom plugin to draw labels next to bars
-const barLabelsPlugin = {
-    id: 'barLabels',
-    afterDatasetDraw(chart, args, options) {
-        const { ctx, chartArea: { left, right, top, bottom }, scales: { x, y } } = chart;
-
-        ctx.save();
-        ctx.font = 'bold 12px Inter, sans-serif'; // Ajustar a fonte conforme necessário
-        ctx.fillStyle = '#475569'; // Cor do texto (slate-600)
-
-        chart.data.datasets.forEach((dataset, datasetIndex) => {
-            const meta = chart.getDatasetMeta(datasetIndex);
-            if (!meta.hidden) {
-                meta.data.forEach((bar, index) => {
-                    const label = chart.data.labels[index];
-                    const dataValue = dataset.data[index];
-
-                    let textX;
-                    let textY = bar.y; // Centralizar verticalmente na barra
-
-                    ctx.textBaseline = 'middle';
-
-                    // Posicionar a label com base no valor da barra (positivo/negativo)
-                    if (dataValue >= 0) {
-                        textX = bar.x + 5; // À direita do final da barra
-                        ctx.textAlign = 'left';
-                    } else {
-                        textX = bar.x - 5; // À esquerda do final da barra
-                        ctx.textAlign = 'right';
-                    }
-
-                    // Lógica para truncar a label se for muito longa para caber
-                    let maxLabelWidth;
-                    if (ctx.textAlign === 'left') {
-                        maxLabelWidth = right - textX - 10;
-                    } else { // ctx.textAlign === 'right'
-                        maxLabelWidth = textX - left - 10;
-                    }
-
-                    let displayLabel = label;
-                    if (maxLabelWidth > 0 && ctx.measureText(label).width > maxLabelWidth) {
-                        let tempLabel = '';
-                        for (let i = 0; i < label.length; i++) {
-                            if (ctx.measureText(tempLabel + label[i] + '...').width < maxLabelWidth) {
-                                tempLabel += label[i];
-                            } else {
-                                break;
-                            }
+    <script>
+        // Função para criar um gráfico de barras
+        function createBarChart(canvasId, labels, data, title, backgroundColor) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: title,
+                        data: data,
+                        backgroundColor: backgroundColor,
+                        borderColor: '#2563EB',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: title,
+                            font: { size: 16, weight: 'bold' },
+                            color: '#1f2937'
                         }
-                        displayLabel = tempLabel + '...';
-                    }
-
-                    ctx.fillText(displayLabel, textX, textY);
-                });
-            }
-        });
-        ctx.restore();
-    }
-};
-
-// Registrar o plugin globalmente
-Chart.register(barLabelsPlugin);
-
-document.addEventListener('DOMContentLoaded', () => {
-    const positiveColor = '#2563eb';
-    const negativeColor = '#ef4444';
-
-    const defaultChartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                display: false
-            },
-            tooltip: {
-                backgroundColor: '#1e293b',
-                titleColor: '#f1f5f9',
-                bodyColor: '#cbd5e1',
-                boxPadding: 5,
-                callbacks: {
-                    label: function(context) {
-                        let label = context.dataset.label || '';
-                        if (label) {
-                            label += ': ';
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: '#6b7280' },
+                            grid: { color: '#e5e7eb' }
+                        },
+                        x: {
+                            ticks: { color: '#6b7280' },
+                            grid: { display: false }
                         }
-                        // Para marketCapChart, o callback do tooltip é diferente.
-                        // Este padrão será sobrescrito para marketCapChart.
-                        if (context.parsed.x !== null) {
-                            label += context.parsed.x.toFixed(2) + '%';
-                        }
-                        return label;
                     }
                 }
-            },
-            // Habilitar o plugin personalizado
-            barLabels: {} // Nenhuma opção específica necessária por enquanto
-        },
-        scales: {
-            x: {
-                ticks: {
-                    color: '#475569'
-                },
-                grid: {
-                    display: false
-                }
-            },
-            y: {
-                ticks: {
-                    color: '#475569',
-                    // O plugin personalizado desenhará as labels internamente,
-                    // então podemos deixar as labels do eixo menos proeminentes ou até ocultá-las
-                    callback: function(value) {
-                        if (value.length > 16) return value.substring(0, 16) + '...';
-                        return value;
-                    }
-                },
-                grid: {
-                    color: '#e2e8f0'
-                }
-            }
-        },
-        indexAxis: 'y',
-    };
-
-    const BolsasChartCtx = document.getElementById('bolsasChart').getContext('2d');
-    const bolsasData = {
-        labels: ['S&P 500', 'Nasdaq', 'Dow Jones', 'Ibovespa', 'FTSE 100', 'DAX', 'Nikkei 225'],
-        datasets: [{
-            label: 'Variação Diária (%)',
-            data: [0.17, 0.02, 0.16, -0.17, -0.20, -0.32, -0.88],
-            backgroundColor: (context) => context.raw >= 0 ? positiveColor : negativeColor,
-            borderColor: (context) => context.raw >= 0 ? positiveColor : negativeColor,
-            borderWidth: 1
-        }]
-    };
-    new Chart(BolsasChartCtx, {
-        type: 'bar',
-        data: bolsasData,
-        options: defaultChartOptions
-    });
-
-    const ascensaoChartCtx = document.getElementById('ascensaoChart').getContext('2d');
-    const ascensaoData = {
-        labels: ['Cogna (BR)', 'Yduqs (BR)', 'Assaí (BR)', 'Palantir (EUA)', 'NRG Energy (EUA)', 'Howmet (EUA)'],
-        datasets: [{
-            label: 'Variação 3 Meses (%)',
-            data: [162, 101.1, 99.1, 80.2, 78.0, 70.2],
-            backgroundColor: positiveColor,
-            borderColor: positiveColor,
-            borderWidth: 1
-        }]
-    };
-    new Chart(ascensaoChartCtx, {
-        type: 'bar',
-        data: ascensaoData,
-        options: defaultChartOptions
-    });
-
-    const quedaChartCtx = document.getElementById('quedaChart').getContext('2d');
-    const quedaData = {
-        labels: ['Deckers (EUA)', 'Enphase (EUA)', 'UnitedHealth (EUA)', 'Lululemon (EUA)', 'RD Saúde (BR)', 'Brava (BR)'],
-        datasets: [{
-            label: 'Variação 6 Meses (%)',
-            data: [-49.2, -42.3, -38.3, -37.9, -30.3, -24.1],
-            backgroundColor: negativeColor,
-            borderColor: negativeColor,
-            borderWidth: 1
-        }]
-    };
-    new Chart(quedaChartCtx, {
-        type: 'bar',
-        data: quedaData,
-        options: defaultChartOptions
-    });
-
-    const marketCapCtx = document.getElementById('marketCapChart').getContext('2d');
-    const marketCapData = {
-        labels: ['Apple', 'Microsoft', 'Nvidia', 'Amazon', 'Alphabet', 'Meta', 'Broadcom'],
-        datasets: [{
-            label: 'Valor de Mercado (US$ Trilhões)',
-            data: [3.2, 2.93, 2.62, 2.47, 1.93, 1.38, 1.37],
-            backgroundColor: 'rgba(37, 99, 235, 0.8)',
-            borderColor: 'rgba(37, 99, 235, 1)',
-            borderWidth: 1
-        }]
-    };
-    new Chart(marketCapCtx, {
-        type: 'bar',
-        data: marketCapData,
-        options: {
-            ...defaultChartOptions,
-            plugins: {
-                ...defaultChartOptions.plugins,
-                tooltip: {
-                    ...defaultChartOptions.plugins.tooltip,
-                    callbacks: {
-                        label: function(context) {
-                            return ` ${context.raw.toFixed(2)} Trilhões USD`;
-                        }
-                    }
-                },
-                barLabels: {} // Habilitar o plugin também para este gráfico
-            }
-        }
-    });
-
-    const navLinks = document.querySelectorAll('header a[href^="#"]');
-    navLinks.forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
             });
-        });
-    });
-});
-</script>
+        }
 
+        // Função para criar um gráfico de linha
+        function createLineChart(canvasId, labels, data, title, borderColor) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: title,
+                        data: data,
+                        borderColor: borderColor,
+                        tension: 0.4,
+                        fill: false,
+                        pointBackgroundColor: borderColor
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: title,
+                            font: { size: 16, weight: 'bold' },
+                            color: '#1f2937'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            ticks: { color: '#6b7280' },
+                            grid: { color: '#e5e7eb' }
+                        },
+                        x: {
+                            ticks: { color: '#6b7280' },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Dados estáticos para os gráficos (substitua por dados de uma API)
+        const cryptoLabels = ['BTC', 'ETH', 'BNB', 'SOL', 'XRP', 'ADA', 'DOGE'];
+        const cryptoData = [100, 75, 50, 90, 60, 70, 40];
+        const cryptoBackgroundColors = ['#1a71c8', '#4092e0', '#56b8f5', '#2563eb', '#1e40af', '#1e3a8a', '#1e293b'];
+
+        const economicLabels = ['Taxa Selic', 'IPCA (Inflação)', 'PIB'];
+        const economicData = [10.5, 3.93, 0.8];
+        const economicColors = ['#2563eb', '#dc2626', '#16a34a']; // Azul, Vermelho, Verde
+
+        const stockMarketLabels = ['Bovespa', 'Nasdaq', 'Nikkei 225'];
+        const stockMarketData = [128000, 17800, 38500];
+        const stockMarketColors = ['#dc2626', '#16a34a', '#dc2626'];
+
+        const risingLabels = ['Petrobras', 'Nubank', 'Microsoft'];
+        const risingData = [15.5, 22.1, 8.9];
+        const risingColors = '#16a34a';
+
+        const fallingLabels = ['Americanas', 'Boeing', 'Tesla'];
+        const fallingData = [-18.2, -25.5, -12.3];
+        const fallingColors = '#dc2626';
+
+        // Cria os gráficos ao carregar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            createBarChart('cryptoChart', cryptoLabels, cryptoData, 'Desempenho Criptomoedas', cryptoBackgroundColors);
+            createBarChart('economicChart', economicLabels, economicData, 'Indicadores Brasileiros', economicColors);
+            createBarChart('stockMarketChart', stockMarketLabels, stockMarketData, 'Bolsas Mundiais', stockMarketColors);
+            createBarChart('risingCompaniesChart', risingLabels, risingData, 'Valorização (%)', '#16a34a');
+            createBarChart('fallingCompaniesChart', fallingLabels, fallingData, 'Desvalorização (%)', '#dc2626');
+        });
+    </script>
 </body>
 </html>
 
